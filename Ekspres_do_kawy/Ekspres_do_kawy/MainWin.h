@@ -48,12 +48,23 @@ namespace Ekspresdokawy {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"MainWin";
-			this->Padding = System::Windows::Forms::Padding(0);
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainWin::typeid));
+			this->SuspendLayout();
+			// 
+			// MainWin
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(282, 253);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Name = L"MainWin";
+			this->Text = L"Ekspres do kawy";
+			this->Load += gcnew System::EventHandler(this, &MainWin::MainWin_Load);
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
+	private: System::Void MainWin_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
 	};
 }
