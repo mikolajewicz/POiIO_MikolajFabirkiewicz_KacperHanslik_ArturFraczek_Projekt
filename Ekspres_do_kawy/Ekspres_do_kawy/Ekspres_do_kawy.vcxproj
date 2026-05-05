@@ -111,6 +111,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SensorsModule.h" />
+    <ClInclude Include="TCoffe.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SensorsModule.cpp" />
+    <ClCompile Include="TCoffe.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

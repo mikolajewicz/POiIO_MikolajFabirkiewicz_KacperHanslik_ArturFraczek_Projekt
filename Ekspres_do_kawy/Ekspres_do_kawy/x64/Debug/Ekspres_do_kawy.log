@@ -1,0 +1,4 @@
+﻿  SensorsModule.cpp
+C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\SensorsModule.cpp(17,2): error C3861: "checkwater": identyfikatora nie odnaleziono
+C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\SensorsModule.cpp(18,2): error C3861: "checkbeans": identyfikatora nie odnaleziono
+C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\SensorsModule.cpp(19,2): error C3861: "checkgrounds": identyfikatora nie odnaleziono
