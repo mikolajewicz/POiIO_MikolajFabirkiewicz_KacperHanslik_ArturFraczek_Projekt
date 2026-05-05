@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Ekspres_do_kawy/Ekspres_do_kawy.vcxproj" />
+</Solution>
