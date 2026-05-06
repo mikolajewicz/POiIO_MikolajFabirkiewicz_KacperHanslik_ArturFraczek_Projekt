@@ -6,16 +6,25 @@
 
 void writeDefaultCoffees();
 void readFile(std::string filename, std::vector<TCoffe>& coffe_vector);
+void saveVector(std::string filename, std::vector<TCoffe> coffe_vector);
 
 int main()
 {
-	//writeDefaultCoffees();
-	std::vector<TCoffe> default_coffees;
-	readFile("default_coffees.txt", default_coffees);
+	std::ifstream plik_domyslnych("default_coffees.txt");
 
-	for (int i = 0; i < default_coffees.size(); i++)
+	if (!plik_domyslnych) {
+		writeDefaultCoffees();
+	}
+
+	std::vector<TCoffe> default_coffees_vector;
+	readFile("default_coffees.txt", default_coffees_vector);
+
+	std::ifstream plik_ulubionych("favourite_coffees.txt");
+	saveVector("favourite_coffees", default_coffees_vector);
+
+	for (int i = 0; i < default_coffees_vector.size(); i++)
 	{
-		default_coffees[i].save(std::cout);
+		default_coffees_vector[i].save(std::cout);
 	}
 
 	std::cin.get();
@@ -59,5 +68,16 @@ void readFile(std::string filename, std::vector<TCoffe>& coffe_vector) {
 
 		coffe_vector.push_back(kawa);
 	}
+}
+
+void saveVector(std::string filename, std::vector<TCoffe> coffe_vector) {
+	int count = coffe_vector.size();
+
+	std::ofstream plik(filename);
+
+	for (int i = 0; i < count; i++) {
+		coffe_vector[i].save(plik);
+	}
+
 }
 
