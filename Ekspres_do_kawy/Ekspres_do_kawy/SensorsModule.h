@@ -1,5 +1,5 @@
 #pragma once
-#include "TCoffe.h"
+#include "TCoffee.h"
 
 class SensorsModule {
 private:
@@ -17,8 +17,8 @@ private:
 public:
     SensorsModule(int initial_water, int initial_beans);
 
-    bool canBrew(TCoffe& coffee);
-    void processBrewing(TCoffe& coffee);
+    bool canBrew(TCoffee& coffee);
+    void processBrewing(TCoffee& coffee);
 
     void refillWater(int amount);
     void refillBeans(int amount);

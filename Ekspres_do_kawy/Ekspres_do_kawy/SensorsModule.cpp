@@ -4,12 +4,12 @@
 SensorsModule::SensorsModule(int initial_water, int initial_beans) 
     : water_level(initial_water), beans_amount(initial_beans), grounds_count(0) {}
 
-bool SensorsModule::canBrew(TCoffe& coffee) {
+bool SensorsModule::canBrew(TCoffee& coffee) {
     if (water_level < coffee.getWaterAmount()) {
         std::cout << "ALARM: Brak wody.\n";
         return false;
     }
-    if (beans_amount < coffee.getCoffeAmount()) {
+    if (beans_amount < coffee.getCoffeeAmount()) {
         std::cout << "ALARM: Brak ziaren.\n";
         return false;
     }
@@ -20,10 +20,10 @@ bool SensorsModule::canBrew(TCoffe& coffee) {
     return true;
 }
 
-void SensorsModule::processBrewing(TCoffe& coffee) {
+void SensorsModule::processBrewing(TCoffee& coffee) {
     if (canBrew(coffee)) {
         water_level -= coffee.getWaterAmount();
-        beans_amount -= coffee.getCoffeAmount();
+        beans_amount -= coffee.getCoffeeAmount();
         grounds_count++; // Inkrementacja fusów co każdą kawę
         
         std::cout << "Parzenie: " << coffee.getName() << " zakonczone.\n";

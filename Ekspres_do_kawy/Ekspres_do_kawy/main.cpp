@@ -1,12 +1,12 @@
 #include <iostream>
-#include "TCoffe.h"
+#include "TCoffee.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
 
 void writeDefaultCoffees();
-void readFile(std::string filename, std::vector<TCoffe>& coffe_vector);
-void saveVector(std::string filename, std::vector<TCoffe> coffe_vector);
+void readFile(std::string filename, std::vector<TCoffee>& coffe_vector);
+void saveVector(std::string filename, std::vector<TCoffee> coffe_vector);
 
 int main()
 {
@@ -16,7 +16,7 @@ int main()
 		writeDefaultCoffees();
 	}
 
-	std::vector<TCoffe> default_coffees_vector;
+	std::vector<TCoffee> default_coffees_vector;
 	readFile("default_coffees.txt", default_coffees_vector);
 
 	std::ifstream plik_ulubionych("favourite_coffees.txt");
@@ -31,9 +31,9 @@ int main()
 }
 
 void writeDefaultCoffees() {
-	TCoffe kawa_espresso("espresso", 50, 25, 0);
-	TCoffe kawa_czarna("Kawa czarna", 250, 25, 0);
-	TCoffe kawa_biala("Kawa biala", 100, 25, 150);
+	TCoffee kawa_espresso("espresso", 50, 25, 0);
+	TCoffee kawa_czarna("Kawa czarna", 250, 25, 0);
+	TCoffee kawa_biala("Kawa biala", 100, 25, 150);
 	
 
 	std::ofstream plik("default_coffees.txt");
@@ -42,7 +42,7 @@ void writeDefaultCoffees() {
 	kawa_biala.save(plik);
 }
 
-void readFile(std::string filename, std::vector<TCoffe>& coffe_vector) {
+void readFile(std::string filename, std::vector<TCoffee>& coffe_vector) {
 	std::ifstream plik(filename);
 	
 	std::string linia;
@@ -64,13 +64,13 @@ void readFile(std::string filename, std::vector<TCoffe>& coffe_vector) {
 		int coffe_amount = std::stoi(coffe_text);
 		int milk_amount = std::stoi(milk_text);
 
-		TCoffe kawa(name, water_amount, coffe_amount, milk_amount);
+		TCoffee kawa(name, water_amount, coffe_amount, milk_amount);
 
 		coffe_vector.push_back(kawa);
 	}
 }
 
-void saveVector(std::string filename, std::vector<TCoffe> coffe_vector) {
+void saveVector(std::string filename, std::vector<TCoffee> coffe_vector) {
 	int count = coffe_vector.size();
 
 	std::ofstream plik(filename);

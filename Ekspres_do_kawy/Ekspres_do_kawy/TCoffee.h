@@ -1,19 +1,19 @@
 #pragma once
 #include <string>
 
-class TCoffe
+class TCoffee
 {
 private:
-	std::string coffe_name;
+	std::string coffee_name;
 	int water_amount = 0;
-	int coffe_amount = 0;
+	int coffee_amount = 0;
 	int milk_amount = 0;
 
 public:
-	TCoffe();
-	TCoffe(std::string name, int water, int coffe, int milk);
+	TCoffee();
+	TCoffee(std::string name, int water, int coffee, int milk);
 	int getWaterAmount();
-	int getCoffeAmount();
+	int getCoffeeAmount();
 	int getMilkAmount();
 	std::string getName();
 	void save(std::ostream& out);

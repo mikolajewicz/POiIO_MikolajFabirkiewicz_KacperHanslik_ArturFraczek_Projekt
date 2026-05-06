@@ -1,4 +1,8 @@
-﻿  main.cpp
+﻿  SensorsModule.cpp
+  TCoffee.cpp
+  main.cpp
 C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(74,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generowanie kodu...
   SensorsModule.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
   Ekspres_do_kawy.vcxproj -> C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.exe
