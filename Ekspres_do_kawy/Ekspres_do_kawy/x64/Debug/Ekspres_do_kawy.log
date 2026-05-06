@@ -1,3 +1,3 @@
-﻿  main.cpp
+﻿  SensorsModule.cpp
   SensorsModule.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
-  Ekspres_do_kawy.vcxproj -> C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.exe
+  Ekspres_do_kawy.vcxproj -> C:\Users\artur\Desktop\Projekt_Kawa\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.exe
