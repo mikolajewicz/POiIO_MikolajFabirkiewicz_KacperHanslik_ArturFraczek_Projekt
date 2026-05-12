@@ -17,4 +17,12 @@ public:
 	int getMilkAmount();
 	std::string getName();
 	void save(std::ostream& out);
+
+	void defineCoffeeAmount(int new_amount);
+	void defineWaterAmount(int new_amount);
+	void defineMilkAmount(int new_amount);
+	void defineCoffeName(std::string name);
+
+	void showCoffeeContents();
+
 };
