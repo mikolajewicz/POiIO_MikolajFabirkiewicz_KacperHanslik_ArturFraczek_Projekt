@@ -1,4 +1,10 @@
 #pragma once
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include "TCoffee.h"
+
 
 namespace Ekspresdokawy {
 
@@ -88,17 +94,17 @@ namespace Ekspresdokawy {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainWin::typeid));
 			this->PanelPodstaw = (gcnew System::Windows::Forms::Panel());
-			this->btn_Podstawowe = (gcnew System::Windows::Forms::Button());
-			this->btn_Ulubione = (gcnew System::Windows::Forms::Button());
-			this->PanelUlub = (gcnew System::Windows::Forms::Panel());
-			this->Kawa1 = (gcnew System::Windows::Forms::Button());
-			this->Kawa2 = (gcnew System::Windows::Forms::Button());
-			this->Kawa4 = (gcnew System::Windows::Forms::Button());
-			this->Kawa3 = (gcnew System::Windows::Forms::Button());
 			this->Kawa8 = (gcnew System::Windows::Forms::Button());
 			this->Kawa7 = (gcnew System::Windows::Forms::Button());
 			this->Kawa6 = (gcnew System::Windows::Forms::Button());
 			this->Kawa5 = (gcnew System::Windows::Forms::Button());
+			this->Kawa4 = (gcnew System::Windows::Forms::Button());
+			this->Kawa3 = (gcnew System::Windows::Forms::Button());
+			this->Kawa2 = (gcnew System::Windows::Forms::Button());
+			this->Kawa1 = (gcnew System::Windows::Forms::Button());
+			this->btn_Podstawowe = (gcnew System::Windows::Forms::Button());
+			this->btn_Ulubione = (gcnew System::Windows::Forms::Button());
+			this->PanelUlub = (gcnew System::Windows::Forms::Panel());
 			this->Ulub4 = (gcnew System::Windows::Forms::Button());
 			this->Ulub3 = (gcnew System::Windows::Forms::Button());
 			this->Ulub2 = (gcnew System::Windows::Forms::Button());
@@ -117,79 +123,11 @@ namespace Ekspresdokawy {
 			this->PanelPodstaw->Controls->Add(this->Kawa3);
 			this->PanelPodstaw->Controls->Add(this->Kawa2);
 			this->PanelPodstaw->Controls->Add(this->Kawa1);
-			this->PanelPodstaw->Location = System::Drawing::Point(6, 113);
+			this->PanelPodstaw->Location = System::Drawing::Point(5, 113);
 			this->PanelPodstaw->Name = L"PanelPodstaw";
 			this->PanelPodstaw->Size = System::Drawing::Size(300, 450);
 			this->PanelPodstaw->TabIndex = 0;
 			this->PanelPodstaw->Visible = false;
-			// 
-			// btn_Podstawowe
-			// 
-			this->btn_Podstawowe->Location = System::Drawing::Point(186, 12);
-			this->btn_Podstawowe->Name = L"btn_Podstawowe";
-			this->btn_Podstawowe->Size = System::Drawing::Size(120, 80);
-			this->btn_Podstawowe->TabIndex = 1;
-			this->btn_Podstawowe->Text = L"Podstawowe";
-			this->btn_Podstawowe->UseVisualStyleBackColor = true;
-			this->btn_Podstawowe->Click += gcnew System::EventHandler(this, &MainWin::btn_Podstawowe_Click);
-			// 
-			// btn_Ulubione
-			// 
-			this->btn_Ulubione->Location = System::Drawing::Point(312, 12);
-			this->btn_Ulubione->Name = L"btn_Ulubione";
-			this->btn_Ulubione->Size = System::Drawing::Size(120, 80);
-			this->btn_Ulubione->TabIndex = 2;
-			this->btn_Ulubione->Text = L"Ulubione";
-			this->btn_Ulubione->UseVisualStyleBackColor = true;
-			this->btn_Ulubione->Click += gcnew System::EventHandler(this, &MainWin::btn_Ulubione_Click);
-			// 
-			// PanelUlub
-			// 
-			this->PanelUlub->Controls->Add(this->Ulub4);
-			this->PanelUlub->Controls->Add(this->Ulub3);
-			this->PanelUlub->Controls->Add(this->Ulub2);
-			this->PanelUlub->Controls->Add(this->Ulub1);
-			this->PanelUlub->Location = System::Drawing::Point(312, 113);
-			this->PanelUlub->Name = L"PanelUlub";
-			this->PanelUlub->Size = System::Drawing::Size(300, 450);
-			this->PanelUlub->TabIndex = 3;
-			this->PanelUlub->Visible = false;
-			// 
-			// Kawa1
-			// 
-			this->Kawa1->Location = System::Drawing::Point(3, 3);
-			this->Kawa1->Name = L"Kawa1";
-			this->Kawa1->Size = System::Drawing::Size(150, 50);
-			this->Kawa1->TabIndex = 0;
-			this->Kawa1->Text = L"Kawa 1";
-			this->Kawa1->UseVisualStyleBackColor = true;
-			// 
-			// Kawa2
-			// 
-			this->Kawa2->Location = System::Drawing::Point(3, 59);
-			this->Kawa2->Name = L"Kawa2";
-			this->Kawa2->Size = System::Drawing::Size(150, 50);
-			this->Kawa2->TabIndex = 1;
-			this->Kawa2->Text = L"Kawa 2";
-			this->Kawa2->UseVisualStyleBackColor = true;
-			// 
-			// Kawa4
-			// 
-			this->Kawa4->Location = System::Drawing::Point(6, 171);
-			this->Kawa4->Name = L"Kawa4";
-			this->Kawa4->Size = System::Drawing::Size(150, 50);
-			this->Kawa4->TabIndex = 3;
-			this->Kawa4->Text = L"Kawa 4";
-			this->Kawa4->UseVisualStyleBackColor = true;
-			// 
-			// Kawa3
-			// 
-			this->Kawa3->Location = System::Drawing::Point(6, 115);
-			this->Kawa3->Name = L"Kawa3";
-			this->Kawa3->Size = System::Drawing::Size(150, 50);
-			this->Kawa3->TabIndex = 2;
-			this->Kawa3->Text = L"Kawa 3";
-			this->Kawa3->UseVisualStyleBackColor = true;
 			// 
 			// Kawa8
 			// 
@@ -226,6 +164,74 @@ namespace Ekspresdokawy {
 			this->Kawa5->TabIndex = 4;
 			this->Kawa5->Text = L"Kawa 5";
 			this->Kawa5->UseVisualStyleBackColor = true;
+			// 
+			// Kawa4
+			// 
+			this->Kawa4->Location = System::Drawing::Point(6, 171);
+			this->Kawa4->Name = L"Kawa4";
+			this->Kawa4->Size = System::Drawing::Size(150, 50);
+			this->Kawa4->TabIndex = 3;
+			this->Kawa4->Text = L"Kawa 4";
+			this->Kawa4->UseVisualStyleBackColor = true;
+			// 
+			// Kawa3
+			// 
+			this->Kawa3->Location = System::Drawing::Point(6, 115);
+			this->Kawa3->Name = L"Kawa3";
+			this->Kawa3->Size = System::Drawing::Size(150, 50);
+			this->Kawa3->TabIndex = 2;
+			this->Kawa3->Text = L"Kawa 3";
+			this->Kawa3->UseVisualStyleBackColor = true;
+			// 
+			// Kawa2
+			// 
+			this->Kawa2->Location = System::Drawing::Point(3, 59);
+			this->Kawa2->Name = L"Kawa2";
+			this->Kawa2->Size = System::Drawing::Size(150, 50);
+			this->Kawa2->TabIndex = 1;
+			this->Kawa2->Text = L"Kawa 2";
+			this->Kawa2->UseVisualStyleBackColor = true;
+			// 
+			// Kawa1
+			// 
+			this->Kawa1->Location = System::Drawing::Point(3, 3);
+			this->Kawa1->Name = L"Kawa1";
+			this->Kawa1->Size = System::Drawing::Size(150, 50);
+			this->Kawa1->TabIndex = 0;
+			this->Kawa1->Text = L"Kawa 1";
+			this->Kawa1->UseVisualStyleBackColor = true;
+			// 
+			// btn_Podstawowe
+			// 
+			this->btn_Podstawowe->Location = System::Drawing::Point(186, 12);
+			this->btn_Podstawowe->Name = L"btn_Podstawowe";
+			this->btn_Podstawowe->Size = System::Drawing::Size(120, 80);
+			this->btn_Podstawowe->TabIndex = 1;
+			this->btn_Podstawowe->Text = L"Podstawowe";
+			this->btn_Podstawowe->UseVisualStyleBackColor = true;
+			this->btn_Podstawowe->Click += gcnew System::EventHandler(this, &MainWin::btn_Podstawowe_Click);
+			// 
+			// btn_Ulubione
+			// 
+			this->btn_Ulubione->Location = System::Drawing::Point(312, 12);
+			this->btn_Ulubione->Name = L"btn_Ulubione";
+			this->btn_Ulubione->Size = System::Drawing::Size(120, 80);
+			this->btn_Ulubione->TabIndex = 2;
+			this->btn_Ulubione->Text = L"Ulubione";
+			this->btn_Ulubione->UseVisualStyleBackColor = true;
+			this->btn_Ulubione->Click += gcnew System::EventHandler(this, &MainWin::btn_Ulubione_Click);
+			// 
+			// PanelUlub
+			// 
+			this->PanelUlub->Controls->Add(this->Ulub4);
+			this->PanelUlub->Controls->Add(this->Ulub3);
+			this->PanelUlub->Controls->Add(this->Ulub2);
+			this->PanelUlub->Controls->Add(this->Ulub1);
+			this->PanelUlub->Location = System::Drawing::Point(312, 113);
+			this->PanelUlub->Name = L"PanelUlub";
+			this->PanelUlub->Size = System::Drawing::Size(300, 450);
+			this->PanelUlub->TabIndex = 3;
+			this->PanelUlub->Visible = false;
 			// 
 			// Ulub4
 			// 
@@ -288,12 +294,42 @@ namespace Ekspresdokawy {
 	
 
 	private: System::Void btn_Podstawowe_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		PanelPodstaw->Visible = true;
+		PanelUlub->Visible = false;
 	}
 
 	private: System::Void btn_Ulubione_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		PanelPodstaw->Visible = false;
+		PanelUlub->Visible = true;
 	}
+		   private: 
+			   void readFile(std::string filename, std::vector<TCoffee>& coffe_vector) {
+				   std::ifstream plik(filename);
+
+				   std::string linia;
+
+				   while (std::getline(plik, linia)) {
+					   std::stringstream ss(linia);
+
+					   std::string name;
+					   std::string water_text;
+					   std::string coffe_text;
+					   std::string milk_text;
+
+					   std::getline(ss, name, ';');
+					   std::getline(ss, water_text, ';');
+					   std::getline(ss, coffe_text, ';');
+					   std::getline(ss, milk_text, ';');
+
+					   int water_amount = std::stoi(water_text);
+					   int coffe_amount = std::stoi(coffe_text);
+					   int milk_amount = std::stoi(milk_text);
+
+					   TCoffee kawa(name, water_amount, coffe_amount, milk_amount);
+
+					   coffe_vector.push_back(kawa);
+				   }
+			   }
 
 };
 }

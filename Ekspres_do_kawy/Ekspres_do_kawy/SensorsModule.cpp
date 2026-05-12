@@ -1,43 +1,43 @@
-//#include "SensorsModule.h"
-//#include <iostream>
-//#include <random>
-//
-//
-//float min_waterlevel = 200;		// [ml]
-//float min_beansamount = 10;		// [g]??
-//float max_grounds = 10;			// nie mam zielonego pojęcia
-//
-//int waterlevel;
-//int beansamount;
-//int groundsamount;
-//
-//
-//void checksensors()
-//{
-//	checkwater();
-//	checkbeans();
-//	checkgrounds();
-//
-//}
-//bool isReadytobrew()
-//{
-//	if (waterlevel > min_waterlevel && beansamount > min_beansamount && groundsamount < max_grounds)
-//		return true;
-//	else
-//		return false;
-//}
-//int checkwater()
-//{
-//	waterlevel = (rand() % 200) + 100;
-//	return waterlevel;
-//}
-//int checkbeans()
-//{
-//	beansamount= (rand() % 30) + 7;
-//	return beansamount;
-//}
-//int checkgrounds()
-//{
-//	groundsamount = (rand() % 15);
-//	return groundsamount;
-//}
+#include "SensorsModule.h"
+#include <iostream>
+
+SensorsModule::SensorsModule(int initial_water, int initial_beans) 
+    : water_level(initial_water), beans_amount(initial_beans), grounds_count(0) {}
+
+bool SensorsModule::canBrew(TCoffee& coffee) {
+    if (water_level < coffee.getWaterAmount()) {
+        std::cout << "ALARM: Brak wody.\n";
+        return false;
+    }
+    if (beans_amount < coffee.getCoffeeAmount()) {
+        std::cout << "ALARM: Brak ziaren.\n";
+        return false;
+    }
+    if (grounds_count >= MAX_GROUNDS) {
+        std::cout << "ALARM: Oproznij pojemnik na fusy.\n";
+        return false;
+    }
+    return true;
+}
+
+void SensorsModule::processBrewing(TCoffee& coffee) {
+    if (canBrew(coffee)) {
+        water_level -= coffee.getWaterAmount();
+        beans_amount -= coffee.getCoffeeAmount();
+        grounds_count++; // Inkrementacja fusów co każdą kawę
+        
+        std::cout << "Parzenie: " << coffee.getName() << " zakonczone.\n";
+    }
+}
+
+void SensorsModule::refillWater(int amount) { water_level += amount; }
+void SensorsModule::refillBeans(int amount) { beans_amount += amount; }
+void SensorsModule::emptyGrounds() { grounds_count = 0; }
+
+void SensorsModule::statusCheck() {
+    std::cout << "--- STATUS SYSTEMU ---\n"
+              << "Woda: " << water_level << " ml\n"
+              << "Ziarna: " << beans_amount << " g\n"
+              << "Fusy: " << grounds_count << "/" << MAX_GROUNDS << "\n"
+              << "----------------------\n";
+}
