@@ -44,59 +44,66 @@ int main()
 	std::string odpowiedz;
 	TCoffee NewCoffee;
 
-	switch (ktore_menu)
-	{
-	case 1: 
-		while (_id > default_coffees_vector.size() || _id < 0)
+
+	bool flag = true;
+	while (flag) {
+		flag = false;
+		switch (ktore_menu)
 		{
-			std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
-			std::cin >> _id;
-			if (_id > default_coffees_vector.size() || _id < 0) { std::cout << "\nWybrales zly numer!!!\n"; }
+		case 1:
+			while (_id > default_coffees_vector.size() || _id < 1)
+			{
+				std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
+				std::cin >> _id;
+				if (_id > default_coffees_vector.size() || _id < 1) { std::cout << "\nWybrales zly numer!!!\n"; }
+			}
+
+			_id--;
+			default_coffees_vector[_id].showCoffeeContents();
+
+			std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
+			std::cin >> odpowiedz;
+			if (odpowiedz == "T" || odpowiedz == "t")
+			{
+				NewCoffee = Personalize(default_coffees_vector, _id);
+			}
+			else
+			{
+				NewCoffee = default_coffees_vector[_id];
+			}
+			break;
+		case 2:
+			while (_id > favourite_coffees_vector.size() || _id < 1)
+			{
+				std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
+				std::cin >> _id;
+				if (_id > favourite_coffees_vector.size() || _id < 1) { std::cout << "\nWybrales zly numer!!!\n"; }
+			}
+
+			_id--;
+			favourite_coffees_vector[_id].showCoffeeContents();
+
+			std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
+			std::cin >> odpowiedz;
+			if (odpowiedz == "T" || odpowiedz == "t")
+			{
+				NewCoffee = Personalize(favourite_coffees_vector, _id);
+			}
+			else
+			{
+				NewCoffee = favourite_coffees_vector[_id];
+			}
+			break;
+		default:
+			std::cout << "\nWybierz poprawna liczbe!!\n\n";
+			std::cin >> ktore_menu;
+			_id = 9999;
+			flag = true;
 		}
-
-		_id--;
-		default_coffees_vector[_id].showCoffeeContents(); 
-
-		std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
-		std::cin >> odpowiedz;
-		if (odpowiedz == "T" || odpowiedz == "t")
-		{
-			NewCoffee = Personalize(default_coffees_vector, _id);
-		}
-		else
-		{
-			NewCoffee = default_coffees_vector[_id];
-		}
-		NewCoffee.showCoffeeContents();
-
-		break;
-	case 2:
-		while (_id > default_coffees_vector.size() || _id < 0)
-		{
-			std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
-			std::cin >> _id;
-			if (_id > default_coffees_vector.size() || _id < 0) { std::cout << "\nWybrales zly numer!!!\n"; }
-		}
-
-		_id--;
-		favourite_coffees_vector[_id].showCoffeeContents();
-
-		std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
-		std::cin >> odpowiedz;
-		if (odpowiedz == "T" || odpowiedz == "t")
-		{
-			NewCoffee = Personalize(favourite_coffees_vector, _id);
-		} 
-		else
-		{
-			NewCoffee = favourite_coffees_vector[_id];
-		}
-		NewCoffee.showCoffeeContents();
-
-		break;
-	default:
-		std::cout << "\nWybierz poprawna liczbe!!\n\n";
 	}
+
+	std::cout << "\nKawa do zrobienia:\n";
+	NewCoffee.showCoffeeContents();
 
 
 	std::cout << "\nNacisnij Enter, aby zakonczyc...";
@@ -183,7 +190,7 @@ TCoffee Personalize(std::vector<TCoffee> coffe_vector, int _id) {
 	int nowa_ilosc_wody;
 	int nowa_ilosc_mleka;
 
-	std::cout << "Aktualna ilosc wody: " << Kawa.getWaterAmount() << "\n";
+	std::cout << "\nAktualna ilosc wody: " << Kawa.getWaterAmount() << "\n";
 	std::cout << "Aktualna ilosc kawy: " << Kawa.getCoffeeAmount() << "\n";
 	std::cout << "Aktualna ilosc mleka: " << Kawa.getMilkAmount() << "\n\n";
 	
@@ -238,8 +245,10 @@ TCoffee Personalize(std::vector<TCoffee> coffe_vector, int _id) {
 		saveVector("favourite_coffees.txt", favourite_coffees_vector);
 	}
 
-	Kawa.showCoffeeContents();
-	printFile("favourite_coffees.txt");
+	if (odpowiedz == "T" || odpowiedz == "t") {
+		std::cout << "\nnowa lista ulubionych kaw:\n";
+		printFile("favourite_coffees.txt");
+	}
 	return Kawa;
 
 

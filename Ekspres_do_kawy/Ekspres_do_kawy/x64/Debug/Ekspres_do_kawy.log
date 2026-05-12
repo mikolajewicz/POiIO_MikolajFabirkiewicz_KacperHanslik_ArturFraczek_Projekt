@@ -1,6 +1,6 @@
 ﻿  main.cpp
-C:\Users\artur\Desktop\Projekt_Kawa\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(162,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-C:\Users\artur\Desktop\Projekt_Kawa\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(220,14): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-C:\Users\artur\Desktop\Projekt_Kawa\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(251,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(169,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(227,14): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\main.cpp(260,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
   SensorsModule.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
-  Ekspres_do_kawy.vcxproj -> C:\Users\artur\Desktop\Projekt_Kawa\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.exe
+  Ekspres_do_kawy.vcxproj -> C:\Users\mikol\Documents\GitHub\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.exe
