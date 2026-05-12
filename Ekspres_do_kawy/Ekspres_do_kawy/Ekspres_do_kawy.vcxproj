@@ -120,7 +120,6 @@
     <ClInclude Include="TCoffee.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWin.cpp" />
     <ClCompile Include="SensorsModule.cpp" />
     <ClCompile Include="TCoffee.cpp" />

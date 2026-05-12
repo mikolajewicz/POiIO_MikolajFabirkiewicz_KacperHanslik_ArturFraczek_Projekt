@@ -24,6 +24,9 @@ namespace Ekspresdokawy {
 		MainWin(void)
 		{
 			InitializeComponent();
+			default_coffees_vector = new std::vector<TCoffee>();
+			readFile("default_coffees.txt", *default_coffees_vector);
+			OdswiezNazwyPrzyciskow();
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
@@ -302,6 +305,7 @@ namespace Ekspresdokawy {
 		PanelPodstaw->Visible = false;
 		PanelUlub->Visible = true;
 	}
+		   
 		   private: 
 			   void readFile(std::string filename, std::vector<TCoffee>& coffe_vector) {
 				   std::ifstream plik(filename);
@@ -330,6 +334,24 @@ namespace Ekspresdokawy {
 					   coffe_vector.push_back(kawa);
 				   }
 			   }
+			   private:
+				   std::vector<TCoffee>* default_coffees_vector;
 
+				   private:
+					   void OdswiezNazwyPrzyciskow() {
+						   array<Button^>^ przyciski = { Kawa1, Kawa2, Kawa3, Kawa4, Kawa5, Kawa6, Kawa7, Kawa8 };
+
+						   for (int i = 0; i < przyciski->Length; i++) {
+							   if (i < (int)default_coffees_vector->size()) {
+								   std::string n = (*default_coffees_vector)[i].getName();
+								   przyciski[i]->Text = gcnew String(n.c_str());
+								   przyciski[i]->Enabled = true;
+							   }
+							   else {
+								   przyciski[i]->Text = "---";
+								   przyciski[i]->Enabled = false;
+							   }
+						   }
+					   }
 };
 }
