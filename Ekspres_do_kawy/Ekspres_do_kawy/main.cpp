@@ -13,6 +13,8 @@ void printFile(std::string filename);
 
 int main()
 {
+
+	// Odczyt lub tworzenie pliku z listą domyślnych kaw
 	std::ifstream plik_domyslnych("default_coffees.txt");
 
 	if (!plik_domyslnych) {
@@ -22,7 +24,80 @@ int main()
 	std::vector<TCoffee> default_coffees_vector;
 	readFile("default_coffees.txt", default_coffees_vector);
 
-	TCoffee NewCoffee = Personalize(default_coffees_vector, 2);
+	std::vector<TCoffee> favourite_coffees_vector;
+	readFile("favourite_coffees.txt", favourite_coffees_vector);
+	//---------------------------------------------------
+
+	// Wyświetlenie listy napojów 
+	std::cout << "Lista domyslnych kaw: \n";
+	printFile("default_coffees.txt");
+	std::cout << "\nLista ulubionych kaw: \n";
+	printFile("favourite_coffees.txt");
+	//---------------------------------------------------
+	 
+	// Wybór kawy
+	std::cout << "\nWybierz z ktorej listy kawe chcesz zaparzyc\n1 - Lista domyslnych\n2 - Lista ulubionych\n";
+	int ktore_menu;
+	std::cin >> ktore_menu;
+
+	int _id = 9999;
+	std::string odpowiedz;
+	TCoffee NewCoffee;
+
+	switch (ktore_menu)
+	{
+	case 1: 
+		while (_id > default_coffees_vector.size() || _id < 0)
+		{
+			std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
+			std::cin >> _id;
+			if (_id > default_coffees_vector.size() || _id < 0) { std::cout << "\nWybrales zly numer!!!\n"; }
+		}
+
+		_id--;
+		default_coffees_vector[_id].showCoffeeContents(); 
+
+		std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
+		std::cin >> odpowiedz;
+		if (odpowiedz == "T" || odpowiedz == "t")
+		{
+			NewCoffee = Personalize(default_coffees_vector, _id);
+		}
+		else
+		{
+			NewCoffee = default_coffees_vector[_id];
+		}
+		NewCoffee.showCoffeeContents();
+
+		break;
+	case 2:
+		while (_id > default_coffees_vector.size() || _id < 0)
+		{
+			std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
+			std::cin >> _id;
+			if (_id > default_coffees_vector.size() || _id < 0) { std::cout << "\nWybrales zly numer!!!\n"; }
+		}
+
+		_id--;
+		favourite_coffees_vector[_id].showCoffeeContents();
+
+		std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
+		std::cin >> odpowiedz;
+		if (odpowiedz == "T" || odpowiedz == "t")
+		{
+			NewCoffee = Personalize(favourite_coffees_vector, _id);
+		} 
+		else
+		{
+			NewCoffee = favourite_coffees_vector[_id];
+		}
+		NewCoffee.showCoffeeContents();
+
+		break;
+	default:
+		std::cout << "\nWybierz poprawna liczbe!!\n\n";
+	}
+
 
 	std::cout << "\nNacisnij Enter, aby zakonczyc...";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -108,8 +183,8 @@ TCoffee Personalize(std::vector<TCoffee> coffe_vector, int _id) {
 	int nowa_ilosc_wody;
 	int nowa_ilosc_mleka;
 
-	std::cout << "Aktualna ilosc kawy: " << Kawa.getCoffeeAmount() << "\n";
 	std::cout << "Aktualna ilosc wody: " << Kawa.getWaterAmount() << "\n";
+	std::cout << "Aktualna ilosc kawy: " << Kawa.getCoffeeAmount() << "\n";
 	std::cout << "Aktualna ilosc mleka: " << Kawa.getMilkAmount() << "\n\n";
 	
 	std::cout << "Nowa ilosc wody: ";
@@ -175,8 +250,8 @@ void printFile(std::string filename) {
 	readFile(filename, wektor);
 	int count = wektor.size();
 
-	std::cout << "\n";
 	for (int i = 0; i < count; i++) {
+		std::cout << i + 1 << ".";
 		std::cout << wektor[i].getName() << "\n";
 	}
 }

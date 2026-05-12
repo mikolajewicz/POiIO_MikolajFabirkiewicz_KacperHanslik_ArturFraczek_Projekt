@@ -54,7 +54,7 @@ void TCoffee::defineCoffeName(std::string name) {
 
 
 void TCoffee::showCoffeeContents() {
-	std::cout << "\n";
+	std::cout << "\n" << this->coffee_name << "\n";
 	std::cout << "Woda: " << this->water_amount << " ml" << std::endl;
 	std::cout << "Kawa: " << this->coffee_amount << " g" << std::endl;
 	std::cout << "Mleko: " << this->milk_amount << " ml" << std::endl;

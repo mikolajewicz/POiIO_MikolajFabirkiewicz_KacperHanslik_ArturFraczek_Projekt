@@ -1,3 +1,8 @@
 espresso;50;25;0
 Kawa czarna;250;25;0
 Kawa biala;100;25;150
+Double Espresso;100;50;0
+Cappuccino;100;25;150
+Latte Macchiato;50;25;250
+Americano;350;25;0
+Flat White;100;50;150
