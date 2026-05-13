@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TCoffee.h"
+#include "SensorsModule.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -13,6 +14,10 @@ void printFile(std::string filename);
 
 int main()
 {
+	// Zdefiniowanie początkowych wartosci wody i kawy
+	SensorsModule sensors(30, 200);
+	sensors.statusCheck();
+
 
 	// Odczyt lub tworzenie pliku z listą domyślnych kaw
 	std::ifstream plik_domyslnych("default_coffees.txt");
@@ -28,6 +33,33 @@ int main()
 	readFile("favourite_coffees.txt", favourite_coffees_vector);
 	//---------------------------------------------------
 
+	// Sprawdzenie statusu czujników na początku działania ekspresu
+	std::string problem;
+	while (sensors.canBrew(problem) == false)
+	{
+		if (problem == "WODA") {
+			std::cout << "Dolej [ml]: ";
+			int ml;
+			if (!(std::cin >> ml)) break;
+			sensors.refillWater(ml);
+		}
+		else if (problem == "ZIARNA") {
+			std::cout << "Dosyp [g]: ";
+			int g;
+			std::cin >> g;
+			sensors.refillBeans(g);
+		}
+		else if (problem == "FUSY") {
+			std::cout << "Oproznij? (T/N): ";
+			char odp;
+			std::cin >> odp;
+			if (odp == 'T' || odp == 't') {
+				sensors.emptyGrounds();
+			}
+		}
+	}
+	//--------------------------------------------------
+	
 	// Wyświetlenie listy napojów 
 	std::cout << "Lista domyslnych kaw: \n";
 	printFile("default_coffees.txt");
@@ -51,12 +83,15 @@ int main()
 		switch (ktore_menu)
 		{
 		case 1:
+
+			// Zabezpieczenie przed wyborem złej kawy
 			while (_id > default_coffees_vector.size() || _id < 1)
 			{
 				std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
 				std::cin >> _id;
 				if (_id > default_coffees_vector.size() || _id < 1) { std::cout << "\nWybrales zly numer!!!\n"; }
 			}
+			//---------------------------------------
 
 			_id--;
 			default_coffees_vector[_id].showCoffeeContents();
@@ -66,19 +101,24 @@ int main()
 			if (odpowiedz == "T" || odpowiedz == "t")
 			{
 				NewCoffee = Personalize(default_coffees_vector, _id);
+				sensors.processBrewing(NewCoffee);
 			}
 			else
 			{
 				NewCoffee = default_coffees_vector[_id];
+				sensors.processBrewing(NewCoffee);
+				sensors.statusCheck();
 			}
 			break;
 		case 2:
+			// Zabezpieczenie przed wyborem złej kawy
 			while (_id > favourite_coffees_vector.size() || _id < 1)
 			{
 				std::cout << "\nWybierz numer kawy ktora chcesz zaparzyc: ";
 				std::cin >> _id;
 				if (_id > favourite_coffees_vector.size() || _id < 1) { std::cout << "\nWybrales zly numer!!!\n"; }
 			}
+			//---------------------------------------
 
 			_id--;
 			favourite_coffees_vector[_id].showCoffeeContents();
@@ -88,10 +128,12 @@ int main()
 			if (odpowiedz == "T" || odpowiedz == "t")
 			{
 				NewCoffee = Personalize(favourite_coffees_vector, _id);
+				sensors.processBrewing(NewCoffee);
 			}
 			else
 			{
 				NewCoffee = favourite_coffees_vector[_id];
+				sensors.processBrewing(NewCoffee);
 			}
 			break;
 		default:
