@@ -2,11 +2,8 @@
 x64/
 Debug/
 Release/
-*.obj
-*.pdb
-*.exe
+*.user
 *.log
 *.tlog
 *.lastbuildstate
 *.recipe
-*.cache

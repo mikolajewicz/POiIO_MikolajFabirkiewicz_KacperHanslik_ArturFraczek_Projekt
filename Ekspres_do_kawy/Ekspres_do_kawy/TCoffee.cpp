@@ -39,3 +39,23 @@ void TCoffee::save(std::ostream& out) {
 		<< milk_amount << "\n";
 }
 
+void TCoffee::defineCoffeeAmount(int new_amount) {
+	this->coffee_amount = new_amount;
+}
+void TCoffee::defineWaterAmount(int new_amount) {
+	this->water_amount = new_amount;
+}
+void TCoffee::defineMilkAmount(int new_amount) {
+	this->milk_amount = new_amount;
+}
+void TCoffee::defineCoffeName(std::string name) {
+	this->coffee_name = name;
+}
+
+
+void TCoffee::showCoffeeContents() {
+	std::cout << "\n" << this->coffee_name << "\n";
+	std::cout << "Woda: " << this->water_amount << " ml" << std::endl;
+	std::cout << "Kawa: " << this->coffee_amount << " g" << std::endl;
+	std::cout << "Mleko: " << this->milk_amount << " ml" << std::endl;
+}

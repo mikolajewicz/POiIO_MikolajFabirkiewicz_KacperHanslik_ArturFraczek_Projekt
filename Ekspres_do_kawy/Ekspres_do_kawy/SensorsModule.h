@@ -17,7 +17,8 @@ private:
 public:
     SensorsModule(int initial_water, int initial_beans);
 
-    bool canBrew(TCoffee& coffee);
+    bool canBrew(std::string& error_msg);
+    bool canBrew(std::string& error_msg, TCoffee& coffee);
     void processBrewing(TCoffee& coffee);
 
     void refillWater(int amount);

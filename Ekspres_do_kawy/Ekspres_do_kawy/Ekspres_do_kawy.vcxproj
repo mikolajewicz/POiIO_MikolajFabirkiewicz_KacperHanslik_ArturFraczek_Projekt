@@ -81,7 +81,6 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -113,35 +112,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="MainWin.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="SensorsModule.h" />
     <ClInclude Include="TCoffee.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainWin.cpp" />
     <ClCompile Include="SensorsModule.cpp" />
     <ClCompile Include="TCoffee.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="MainWin.resx">
-      <DependentUpon>MainWin.h</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\assets\ekspresikonka.ico" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="default_coffees.txt" />
+    <Text Include="favourite_coffees.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
