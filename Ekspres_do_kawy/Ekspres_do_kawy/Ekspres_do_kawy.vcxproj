@@ -112,17 +112,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MainWin.h" />
     <ClInclude Include="SensorsModule.h" />
     <ClInclude Include="TCoffee.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MainWin.cpp" />
     <ClCompile Include="SensorsModule.cpp" />
     <ClCompile Include="TCoffee.cpp" />
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="default_coffees.txt" />
     <Text Include="favourite_coffees.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="favourite_coffees" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainWin.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
