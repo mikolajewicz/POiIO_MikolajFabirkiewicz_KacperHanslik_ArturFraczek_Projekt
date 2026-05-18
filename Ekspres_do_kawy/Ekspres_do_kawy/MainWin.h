@@ -26,7 +26,9 @@ namespace Ekspresdokawy {
 			InitializeComponent();
 			default_coffees_vector = new std::vector<TCoffee>();
 			readFile("default_coffees.txt", *default_coffees_vector);
-			OdswiezNazwyPrzyciskow();
+
+			// Generujemy przyciski dynamicznie na podstawie zawartoœci pliku
+			GenerujPrzyciskiKaw();
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
@@ -48,28 +50,28 @@ namespace Ekspresdokawy {
 
 	private: System::Windows::Forms::Button^ btn_Ulubione;
 	private: System::Windows::Forms::Panel^ PanelUlub;
-	private: System::Windows::Forms::Button^ Kawa1;
-	private: System::Windows::Forms::Button^ Kawa8;
 
 
-	private: System::Windows::Forms::Button^ Kawa7;
 
-	private: System::Windows::Forms::Button^ Kawa6;
 
-	private: System::Windows::Forms::Button^ Kawa5;
 
-	private: System::Windows::Forms::Button^ Kawa4;
 
-	private: System::Windows::Forms::Button^ Kawa3;
 
-	private: System::Windows::Forms::Button^ Kawa2;
-	private: System::Windows::Forms::Button^ Ulub4;
 
-	private: System::Windows::Forms::Button^ Ulub3;
 
-	private: System::Windows::Forms::Button^ Ulub2;
 
-	private: System::Windows::Forms::Button^ Ulub1;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -97,118 +99,27 @@ namespace Ekspresdokawy {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainWin::typeid));
 			this->PanelPodstaw = (gcnew System::Windows::Forms::Panel());
-			this->Kawa8 = (gcnew System::Windows::Forms::Button());
-			this->Kawa7 = (gcnew System::Windows::Forms::Button());
-			this->Kawa6 = (gcnew System::Windows::Forms::Button());
-			this->Kawa5 = (gcnew System::Windows::Forms::Button());
-			this->Kawa4 = (gcnew System::Windows::Forms::Button());
-			this->Kawa3 = (gcnew System::Windows::Forms::Button());
-			this->Kawa2 = (gcnew System::Windows::Forms::Button());
-			this->Kawa1 = (gcnew System::Windows::Forms::Button());
 			this->btn_Podstawowe = (gcnew System::Windows::Forms::Button());
 			this->btn_Ulubione = (gcnew System::Windows::Forms::Button());
 			this->PanelUlub = (gcnew System::Windows::Forms::Panel());
-			this->Ulub4 = (gcnew System::Windows::Forms::Button());
-			this->Ulub3 = (gcnew System::Windows::Forms::Button());
-			this->Ulub2 = (gcnew System::Windows::Forms::Button());
-			this->Ulub1 = (gcnew System::Windows::Forms::Button());
-			this->PanelPodstaw->SuspendLayout();
-			this->PanelUlub->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// PanelPodstaw
 			// 
-			this->PanelPodstaw->Controls->Add(this->Kawa8);
-			this->PanelPodstaw->Controls->Add(this->Kawa7);
-			this->PanelPodstaw->Controls->Add(this->Kawa6);
-			this->PanelPodstaw->Controls->Add(this->Kawa5);
-			this->PanelPodstaw->Controls->Add(this->Kawa4);
-			this->PanelPodstaw->Controls->Add(this->Kawa3);
-			this->PanelPodstaw->Controls->Add(this->Kawa2);
-			this->PanelPodstaw->Controls->Add(this->Kawa1);
-			this->PanelPodstaw->Location = System::Drawing::Point(5, 113);
+			this->PanelPodstaw->AutoScroll = true;
+			this->PanelPodstaw->Location = System::Drawing::Point(4, 92);
+			this->PanelPodstaw->Margin = System::Windows::Forms::Padding(2);
 			this->PanelPodstaw->Name = L"PanelPodstaw";
-			this->PanelPodstaw->Size = System::Drawing::Size(300, 450);
+			this->PanelPodstaw->Size = System::Drawing::Size(225, 366);
 			this->PanelPodstaw->TabIndex = 0;
 			this->PanelPodstaw->Visible = false;
 			// 
-			// Kawa8
-			// 
-			this->Kawa8->Location = System::Drawing::Point(9, 395);
-			this->Kawa8->Name = L"Kawa8";
-			this->Kawa8->Size = System::Drawing::Size(150, 50);
-			this->Kawa8->TabIndex = 7;
-			this->Kawa8->Text = L"Kawa 8";
-			this->Kawa8->UseVisualStyleBackColor = true;
-			// 
-			// Kawa7
-			// 
-			this->Kawa7->Location = System::Drawing::Point(9, 339);
-			this->Kawa7->Name = L"Kawa7";
-			this->Kawa7->Size = System::Drawing::Size(150, 50);
-			this->Kawa7->TabIndex = 6;
-			this->Kawa7->Text = L"Kawa 7";
-			this->Kawa7->UseVisualStyleBackColor = true;
-			// 
-			// Kawa6
-			// 
-			this->Kawa6->Location = System::Drawing::Point(6, 283);
-			this->Kawa6->Name = L"Kawa6";
-			this->Kawa6->Size = System::Drawing::Size(150, 50);
-			this->Kawa6->TabIndex = 5;
-			this->Kawa6->Text = L"Kawa 6";
-			this->Kawa6->UseVisualStyleBackColor = true;
-			// 
-			// Kawa5
-			// 
-			this->Kawa5->Location = System::Drawing::Point(6, 227);
-			this->Kawa5->Name = L"Kawa5";
-			this->Kawa5->Size = System::Drawing::Size(150, 50);
-			this->Kawa5->TabIndex = 4;
-			this->Kawa5->Text = L"Kawa 5";
-			this->Kawa5->UseVisualStyleBackColor = true;
-			// 
-			// Kawa4
-			// 
-			this->Kawa4->Location = System::Drawing::Point(6, 171);
-			this->Kawa4->Name = L"Kawa4";
-			this->Kawa4->Size = System::Drawing::Size(150, 50);
-			this->Kawa4->TabIndex = 3;
-			this->Kawa4->Text = L"Kawa 4";
-			this->Kawa4->UseVisualStyleBackColor = true;
-			// 
-			// Kawa3
-			// 
-			this->Kawa3->Location = System::Drawing::Point(6, 115);
-			this->Kawa3->Name = L"Kawa3";
-			this->Kawa3->Size = System::Drawing::Size(150, 50);
-			this->Kawa3->TabIndex = 2;
-			this->Kawa3->Text = L"Kawa 3";
-			this->Kawa3->UseVisualStyleBackColor = true;
-			// 
-			// Kawa2
-			// 
-			this->Kawa2->Location = System::Drawing::Point(3, 59);
-			this->Kawa2->Name = L"Kawa2";
-			this->Kawa2->Size = System::Drawing::Size(150, 50);
-			this->Kawa2->TabIndex = 1;
-			this->Kawa2->Text = L"Kawa 2";
-			this->Kawa2->UseVisualStyleBackColor = true;
-			// 
-			// Kawa1
-			// 
-			this->Kawa1->Location = System::Drawing::Point(3, 3);
-			this->Kawa1->Name = L"Kawa1";
-			this->Kawa1->Size = System::Drawing::Size(150, 50);
-			this->Kawa1->TabIndex = 0;
-			this->Kawa1->Text = L"Kawa 1";
-			this->Kawa1->UseVisualStyleBackColor = true;
-			// 
 			// btn_Podstawowe
 			// 
-			this->btn_Podstawowe->Location = System::Drawing::Point(186, 12);
+			this->btn_Podstawowe->Location = System::Drawing::Point(140, 10);
+			this->btn_Podstawowe->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Podstawowe->Name = L"btn_Podstawowe";
-			this->btn_Podstawowe->Size = System::Drawing::Size(120, 80);
+			this->btn_Podstawowe->Size = System::Drawing::Size(90, 65);
 			this->btn_Podstawowe->TabIndex = 1;
 			this->btn_Podstawowe->Text = L"Podstawowe";
 			this->btn_Podstawowe->UseVisualStyleBackColor = true;
@@ -216,9 +127,10 @@ namespace Ekspresdokawy {
 			// 
 			// btn_Ulubione
 			// 
-			this->btn_Ulubione->Location = System::Drawing::Point(312, 12);
+			this->btn_Ulubione->Location = System::Drawing::Point(234, 10);
+			this->btn_Ulubione->Margin = System::Windows::Forms::Padding(2);
 			this->btn_Ulubione->Name = L"btn_Ulubione";
-			this->btn_Ulubione->Size = System::Drawing::Size(120, 80);
+			this->btn_Ulubione->Size = System::Drawing::Size(90, 65);
 			this->btn_Ulubione->TabIndex = 2;
 			this->btn_Ulubione->Text = L"Ulubione";
 			this->btn_Ulubione->UseVisualStyleBackColor = true;
@@ -226,67 +138,29 @@ namespace Ekspresdokawy {
 			// 
 			// PanelUlub
 			// 
-			this->PanelUlub->Controls->Add(this->Ulub4);
-			this->PanelUlub->Controls->Add(this->Ulub3);
-			this->PanelUlub->Controls->Add(this->Ulub2);
-			this->PanelUlub->Controls->Add(this->Ulub1);
-			this->PanelUlub->Location = System::Drawing::Point(312, 113);
+			this->PanelUlub->AutoScroll = true;
+			this->PanelUlub->Location = System::Drawing::Point(234, 92);
+			this->PanelUlub->Margin = System::Windows::Forms::Padding(2);
 			this->PanelUlub->Name = L"PanelUlub";
-			this->PanelUlub->Size = System::Drawing::Size(300, 450);
+			this->PanelUlub->Size = System::Drawing::Size(225, 366);
 			this->PanelUlub->TabIndex = 3;
 			this->PanelUlub->Visible = false;
 			// 
-			// Ulub4
-			// 
-			this->Ulub4->Location = System::Drawing::Point(6, 171);
-			this->Ulub4->Name = L"Ulub4";
-			this->Ulub4->Size = System::Drawing::Size(150, 50);
-			this->Ulub4->TabIndex = 7;
-			this->Ulub4->Text = L"Ulub4";
-			this->Ulub4->UseVisualStyleBackColor = true;
-			// 
-			// Ulub3
-			// 
-			this->Ulub3->Location = System::Drawing::Point(6, 115);
-			this->Ulub3->Name = L"Ulub3";
-			this->Ulub3->Size = System::Drawing::Size(150, 50);
-			this->Ulub3->TabIndex = 6;
-			this->Ulub3->Text = L"Ulub3";
-			this->Ulub3->UseVisualStyleBackColor = true;
-			// 
-			// Ulub2
-			// 
-			this->Ulub2->Location = System::Drawing::Point(3, 59);
-			this->Ulub2->Name = L"Ulub2";
-			this->Ulub2->Size = System::Drawing::Size(150, 50);
-			this->Ulub2->TabIndex = 5;
-			this->Ulub2->Text = L"Ulub1";
-			this->Ulub2->UseVisualStyleBackColor = true;
-			// 
-			// Ulub1
-			// 
-			this->Ulub1->Location = System::Drawing::Point(3, 3);
-			this->Ulub1->Name = L"Ulub1";
-			this->Ulub1->Size = System::Drawing::Size(150, 50);
-			this->Ulub1->TabIndex = 4;
-			this->Ulub1->Text = L"Ulub1";
-			this->Ulub1->UseVisualStyleBackColor = true;
-			// 
 			// MainWin
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(623, 570);
+			this->AutoScroll = true;
+			this->ClientSize = System::Drawing::Size(467, 463);
 			this->Controls->Add(this->PanelUlub);
 			this->Controls->Add(this->btn_Ulubione);
 			this->Controls->Add(this->btn_Podstawowe);
 			this->Controls->Add(this->PanelPodstaw);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MainWin";
 			this->Text = L"Ekspres do kawy";
 			this->Load += gcnew System::EventHandler(this, &MainWin::MainWin_Load);
-			this->PanelPodstaw->ResumeLayout(false);
-			this->PanelUlub->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -338,20 +212,64 @@ namespace Ekspresdokawy {
 				   std::vector<TCoffee>* default_coffees_vector;
 
 				   private:
-					   void OdswiezNazwyPrzyciskow() {
-						   array<Button^>^ przyciski = { Kawa1, Kawa2, Kawa3, Kawa4, Kawa5, Kawa6, Kawa7, Kawa8 };
+					   void GenerujPrzyciskiKaw() {
+						   // Czyszczenie panelu na wypadek, gdybyœmy odœwie¿ali listê po edycji
+						   PanelPodstaw->Controls->Clear();
 
-						   for (int i = 0; i < przyciski->Length; i++) {
-							   if (i < (int)default_coffees_vector->size()) {
-								   std::string n = (*default_coffees_vector)[i].getName();
-								   przyciski[i]->Text = gcnew String(n.c_str());
-								   przyciski[i]->Enabled = true;
-							   }
-							   else {
-								   przyciski[i]->Text = "---";
-								   przyciski[i]->Enabled = false;
-							   }
+						   int pozycjaY = 10; // Pocz¹tkowy odstêp od góry panelu
+						   int odstep = 55;   // Wysokoœæ przycisku (50px) + ma³y margines (5px)
+
+						   for (size_t i = 0; i < default_coffees_vector->size(); i++) {
+							   // 1. Tworzymy nowy przycisk w pamiêci
+							   Button^ nowyPrzycisk = gcnew Button();
+
+							   // 2. Pobieramy nazwê z wektora i ustawiamy jako tekst przycisku
+							   std::string nazwaKawy = (*default_coffees_vector)[i].getName();
+							   nowyPrzycisk->Text = gcnew String(nazwaKawy.c_str());
+
+							   // 3. Ustawiamy rozmiar i pozycjê na panelu
+							   nowyPrzycisk->Size = System::Drawing::Size(150, 50);
+							   nowyPrzycisk->Location = System::Drawing::Point(10, pozycjaY);
+
+							   // 4. Przypisujemy unikalny numer (indeks wektora), ¿ebyœmy wiedzieli, który klikniêto
+							   nowyPrzycisk->Tag = i;
+
+							   // 5. Podpinamy zdarzenie klikniêcia (zaraz je zaprogramujemy!)
+							   nowyPrzycisk->Click += gcnew System::EventHandler(this, &MainWin::KliknietoKawa_Click);
+
+							   // 6. Dodajemy gotowy przycisk do panelu
+							   PanelPodstaw->Controls->Add(nowyPrzycisk);
+
+							   // Zwiêkszamy pozycjê Y dla nastêpnego przycisku, ¿eby nie usiad³y na sobie
+							   pozycjaY += odstep;
 						   }
 					   }
+
+					private: System::Void KliknietoKawa_Click(System::Object^ sender, System::EventArgs^ e) {
+						// 1. Bezpieczne rzutowanie nadawcy na przycisk
+						Button^ kliknietyPrzycisk = safe_cast<Button^>(sender);
+
+						// 2. POPRAWKA: Odpakowanie obiektu unmanaged/managed (bezpieczne unboxing)
+						// Pobieramy Tag jako obiekt, a potem konwertujemy go na int
+						int indeksKawy = Convert::ToInt32(kliknietyPrzycisk->Tag);
+
+						// 3. Dodatkowe zabezpieczenie: sprawdŸmy, czy indeks nie wykracza poza wektor
+						if (default_coffees_vector != nullptr && indeksKawy < (int)default_coffees_vector->size()) {
+
+							// Pobieramy dane o kawie
+							TCoffee wybranaKawa = (*default_coffees_vector)[indeksKawy];
+
+							// Przygotowanie tekstu do wyœwietlenia
+							std::string info = "Parzê: " + wybranaKawa.getName() +
+								"\nWoda: " + std::to_string(wybranaKawa.getWaterAmount()) + "ml" +
+								"\nKawa: " + std::to_string(wybranaKawa.getCoffeeAmount()) + "g" +
+								"\nMleko: " + std::to_string(wybranaKawa.getMilkAmount()) + "ml";
+							String^ komunikat = gcnew String(info.c_str());
+							MessageBox::Show(komunikat, "Ekspres do kawy");
+						}
+						else {
+							MessageBox::Show("B³¹d: Nie znaleziono danych dla tej kawy!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Error);
+						}
+					}
 };
 }

@@ -3,3 +3,6 @@ C:\Users\artur\Desktop\Projekt_Kawa\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ek
 C:\Users\Lenovo\Desktop\POiIO PROJEKT\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.vcxproj.AssemblyReference.cache
 C:\Users\Lenovo\Desktop\POiIO PROJEKT\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ekspresdokawy.MainWin.resources
 C:\Users\Lenovo\Desktop\POiIO PROJEKT\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.vcxproj.GenerateResource.cache
+C:\Users\khans\Desktop\POIO PROJEKT\mikolajewicz\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.vcxproj.AssemblyReference.cache
+C:\Users\khans\Desktop\POIO PROJEKT\mikolajewicz\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ekspresdokawy.MainWin.resources
+C:\Users\khans\Desktop\POIO PROJEKT\mikolajewicz\POiIO_MikolajFabirkiewicz_KacperHanslik_ArturFraczek_Projekt\Ekspres_do_kawy\Ekspres_do_kawy\x64\Debug\Ekspres_do_kawy.vcxproj.GenerateResource.cache
