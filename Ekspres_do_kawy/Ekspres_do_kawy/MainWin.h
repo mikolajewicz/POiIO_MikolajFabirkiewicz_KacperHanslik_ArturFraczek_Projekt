@@ -213,50 +213,39 @@ namespace Ekspresdokawy {
 
 				   private:
 					   void GenerujPrzyciskiKaw() {
-						   // Czyszczenie panelu na wypadek, gdybyœmy odœwie¿ali listê po edycji
 						   PanelPodstaw->Controls->Clear();
 
-						   int pozycjaY = 10; // Pocz¹tkowy odstêp od góry panelu
-						   int odstep = 55;   // Wysokoœæ przycisku (50px) + ma³y margines (5px)
+						   int pozycjaY = 10; 
+						   int odstep = 55;   
 
 						   for (size_t i = 0; i < default_coffees_vector->size(); i++) {
-							   // 1. Tworzymy nowy przycisk w pamiêci
+							
 							   Button^ nowyPrzycisk = gcnew Button();
 
-							   // 2. Pobieramy nazwê z wektora i ustawiamy jako tekst przycisku
 							   std::string nazwaKawy = (*default_coffees_vector)[i].getName();
 							   nowyPrzycisk->Text = gcnew String(nazwaKawy.c_str());
-
-							   // 3. Ustawiamy rozmiar i pozycjê na panelu
 							   nowyPrzycisk->Size = System::Drawing::Size(150, 50);
 							   nowyPrzycisk->Location = System::Drawing::Point(10, pozycjaY);
-
-							   // 4. Przypisujemy unikalny numer (indeks wektora), ¿ebyœmy wiedzieli, który klikniêto
 							   nowyPrzycisk->Tag = i;
-
-							   // 5. Podpinamy zdarzenie klikniêcia (zaraz je zaprogramujemy!)
 							   nowyPrzycisk->Click += gcnew System::EventHandler(this, &MainWin::KliknietoKawa_Click);
 
-							   // 6. Dodajemy gotowy przycisk do panelu
 							   PanelPodstaw->Controls->Add(nowyPrzycisk);
 
-							   // Zwiêkszamy pozycjê Y dla nastêpnego przycisku, ¿eby nie usiad³y na sobie
+							
 							   pozycjaY += odstep;
 						   }
 					   }
 
 					private: System::Void KliknietoKawa_Click(System::Object^ sender, System::EventArgs^ e) {
-						// 1. Bezpieczne rzutowanie nadawcy na przycisk
+					
 						Button^ kliknietyPrzycisk = safe_cast<Button^>(sender);
 
-						// 2. POPRAWKA: Odpakowanie obiektu unmanaged/managed (bezpieczne unboxing)
-						// Pobieramy Tag jako obiekt, a potem konwertujemy go na int
+					
 						int indeksKawy = Convert::ToInt32(kliknietyPrzycisk->Tag);
 
-						// 3. Dodatkowe zabezpieczenie: sprawdŸmy, czy indeks nie wykracza poza wektor
+		
 						if (default_coffees_vector != nullptr && indeksKawy < (int)default_coffees_vector->size()) {
 
-							// Pobieramy dane o kawie
 							TCoffee wybranaKawa = (*default_coffees_vector)[indeksKawy];
 
 							std::string info = "Parzê: " + wybranaKawa.getName() +
