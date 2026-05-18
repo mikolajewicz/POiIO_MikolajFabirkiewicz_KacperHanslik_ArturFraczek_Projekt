@@ -1,5 +1,9 @@
 .vs/
-[Bb]in/
-[Oo]bj/
+x64/
+Debug/
+Release/
 *.user
-*.suo
+*.log
+*.tlog
+*.lastbuildstate
+*.recipe
