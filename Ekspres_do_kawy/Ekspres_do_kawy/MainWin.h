@@ -259,7 +259,6 @@ namespace Ekspresdokawy {
 							// Pobieramy dane o kawie
 							TCoffee wybranaKawa = (*default_coffees_vector)[indeksKawy];
 
-							// Przygotowanie tekstu do wyœwietlenia
 							std::string info = "Parzê: " + wybranaKawa.getName() +
 								"\nWoda: " + std::to_string(wybranaKawa.getWaterAmount()) + "ml" +
 								"\nKawa: " + std::to_string(wybranaKawa.getCoffeeAmount()) + "g" +
