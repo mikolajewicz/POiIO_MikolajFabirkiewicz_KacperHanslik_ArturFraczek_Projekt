@@ -7,6 +7,7 @@
 #include <limits>
 
 void writeDefaultCoffees();
+void serviceCheckB4Coffe(SensorsModule& sensors, TCoffee& coffee);
 void readFile(std::string filename, std::vector<TCoffee>& coffe_vector);
 void saveVector(std::string filename, std::vector<TCoffee> coffe_vector);
 TCoffee Personalize(std::vector<TCoffee> coffe_vector, int _id);
@@ -83,7 +84,7 @@ int main()
 		switch (ktore_menu)
 		{
 		case 1:
-
+			 _id = 9999;
 			// Zabezpieczenie przed wyborem złej kawy
 			while (_id > default_coffees_vector.size() || _id < 1)
 			{
@@ -101,16 +102,17 @@ int main()
 			if (odpowiedz == "T" || odpowiedz == "t")
 			{
 				NewCoffee = Personalize(default_coffees_vector, _id);
-				sensors.processBrewing(NewCoffee);
 			}
 			else
 			{
 				NewCoffee = default_coffees_vector[_id];
-				sensors.processBrewing(NewCoffee);
-				sensors.statusCheck();
 			}
+			serviceCheckB4Coffe(sensors, NewCoffee);
+			sensors.processBrewing(NewCoffee);
+			sensors.statusCheck();
 			break;
 		case 2:
+			 _id = 9999;
 			// Zabezpieczenie przed wyborem złej kawy
 			while (_id > favourite_coffees_vector.size() || _id < 1)
 			{
@@ -126,15 +128,17 @@ int main()
 			std::cout << "\nCzy chcesz personalizowac? (T/N)\n";
 			std::cin >> odpowiedz;
 			if (odpowiedz == "T" || odpowiedz == "t")
-			{
+			{		
 				NewCoffee = Personalize(favourite_coffees_vector, _id);
-				sensors.processBrewing(NewCoffee);
 			}
 			else
 			{
 				NewCoffee = favourite_coffees_vector[_id];
-				sensors.processBrewing(NewCoffee);
 			}
+
+			serviceCheckB4Coffe(sensors, NewCoffee);
+			sensors.processBrewing(NewCoffee);
+			sensors.statusCheck();
 			break;
 		default:
 			std::cout << "\nWybierz poprawna liczbe!!\n\n";
@@ -304,5 +308,33 @@ void printFile(std::string filename) {
 	for (int i = 0; i < count; i++) {
 		std::cout << i + 1 << ".";
 		std::cout << wektor[i].getName() << "\n";
+	}
+}
+
+void serviceCheckB4Coffe(SensorsModule& sensors, TCoffee& coffee)
+{
+	std::string problem;
+	while (sensors.canBrew(problem, coffee) == false)
+	{
+		if (problem == "WODA") {
+			std::cout << "Dolej [ml]: ";
+			int ml;
+			if (!(std::cin >> ml)) break;
+			sensors.refillWater(ml);
+		}
+		else if (problem == "ZIARNA") {
+			std::cout << "Dosyp [g]: ";
+			int g;
+			if (!(std::cin >> g)) break;
+			sensors.refillBeans(g);
+		}
+		else if (problem == "FUSY") {
+			std::cout << "Oproznij? (T/N): ";
+			char odp;
+			std::cin >> odp;
+			if (odp == 'T' || odp == 't') {
+				sensors.emptyGrounds();
+			}
+		}
 	}
 }
