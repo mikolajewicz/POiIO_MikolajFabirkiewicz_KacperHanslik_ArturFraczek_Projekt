@@ -35,15 +35,22 @@
     <ClCompile Include="TCoffee.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\assets\ekspresikonka.ico">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
+    <ClCompile Include="main.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="default_coffees.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
+    <Text Include="favourite_coffees.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainWin.resx">
+      <Filter>Pliki zasobów</Filter>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="favourite_coffees" />
   </ItemGroup>
 </Project>
