@@ -30,7 +30,7 @@ void CoffeeManager::writeDefaultCoffees(const std::string& filename)
 	kawa_americano.save(plik);
 	kawa_flat_white.save(plik);
 }
-void readFile(std::string filename, std::vector<TCoffee>& coffe_vector) {
+void CoffeeManager::readFile(std::string filename, std::vector<TCoffee>& coffe_vector) {
 	std::ifstream plik(filename);
 
 	std::string linia;
@@ -57,7 +57,7 @@ void readFile(std::string filename, std::vector<TCoffee>& coffe_vector) {
 		coffe_vector.push_back(kawa);
 	}
 }
-void saveVector(std::string filename, std::vector<TCoffee> coffe_vector) {
+void CoffeeManager::saveVector(std::string filename, std::vector<TCoffee> coffe_vector) {
 	int count = coffe_vector.size();
 
 	std::ofstream plik(filename);
