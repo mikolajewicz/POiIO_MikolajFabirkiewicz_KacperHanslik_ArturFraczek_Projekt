@@ -52,32 +52,6 @@ namespace Ekspresdokawy {
 	private: System::Windows::Forms::Panel^ PanelUlub;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	protected:
 
 	protected:
@@ -210,6 +184,7 @@ namespace Ekspresdokawy {
 			   }
 			   private:
 				   std::vector<TCoffee>* default_coffees_vector;
+				   std::vector<TCoffee>* favourite_coffees_vector;
 
 				   private:
 					   void GenerujPrzyciskiKaw() {

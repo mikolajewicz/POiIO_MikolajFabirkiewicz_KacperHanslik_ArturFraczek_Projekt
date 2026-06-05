@@ -134,9 +134,6 @@
     <Text Include="favourite_coffees.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="favourite_coffees" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="MainWin.resx" />
   </ItemGroup>
   <ItemGroup>
