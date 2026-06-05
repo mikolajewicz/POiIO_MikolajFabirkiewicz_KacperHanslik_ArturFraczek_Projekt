@@ -112,11 +112,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CoffeeManager.h" />
     <ClInclude Include="MainWin.h" />
     <ClInclude Include="SensorsModule.h" />
     <ClInclude Include="TCoffee.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CoffeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWin.cpp" />
     <ClCompile Include="SensorsModule.cpp" />
