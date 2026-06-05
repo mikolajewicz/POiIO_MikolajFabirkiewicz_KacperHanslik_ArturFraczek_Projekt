@@ -118,7 +118,7 @@
     <ClInclude Include="TCoffee.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CoffeManager.cpp" />
+    <ClCompile Include="CoffeeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWin.cpp" />
     <ClCompile Include="SensorsModule.cpp" />
