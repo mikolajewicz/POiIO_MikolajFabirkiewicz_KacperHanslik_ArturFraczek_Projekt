@@ -12,11 +12,12 @@ private:
 public:
 	TCoffee();
 	TCoffee(std::string name, int water, int coffee, int milk);
-	int getWaterAmount();
-	int getCoffeeAmount();
-	int getMilkAmount();
-	std::string getName();
-	void save(std::ostream& out);
+	int getWaterAmount() const;
+	int getCoffeeAmount() const;
+	int getMilkAmount() const;
+	std::string getName() const;
+	void save(std::ostream& out) const;
+	
 
 	void defineCoffeeAmount(int new_amount);
 	void defineWaterAmount(int new_amount);

@@ -8,37 +8,39 @@ TCoffee::TCoffee(std::string name, int water, int coffee, int milk) {
 	coffee_amount = coffee;
 	milk_amount = milk;
 }
-
 TCoffee::TCoffee(){
 	coffee_name = "";
 	water_amount = 0;
 	coffee_amount = 0;
 	milk_amount = 0;
 }
-
-int TCoffee::getWaterAmount(){
+int TCoffee::getWaterAmount() const
+{
 	return water_amount;
 }
 
-int TCoffee::getCoffeeAmount(){
+int TCoffee::getCoffeeAmount() const
+{
 	return coffee_amount;
 }
 
-int TCoffee::getMilkAmount(){
+int TCoffee::getMilkAmount() const
+{
 	return milk_amount;
 }
 
-std::string TCoffee::getName(){
+std::string TCoffee::getName() const
+{
 	return coffee_name;
 }
 
-void TCoffee::save(std::ostream& out) {
+void TCoffee::save(std::ostream& out) const
+{
 	out << coffee_name << ";"
 		<< water_amount << ";"
 		<< coffee_amount << ";"
 		<< milk_amount << "\n";
 }
-
 void TCoffee::defineCoffeeAmount(int new_amount) {
 	this->coffee_amount = new_amount;
 }

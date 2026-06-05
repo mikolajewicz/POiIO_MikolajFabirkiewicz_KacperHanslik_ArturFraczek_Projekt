@@ -77,6 +77,16 @@ void CoffeeManager::ensureDefaultCoffeeFileExists(const std::string& filename)
 	}
 }
 
+void CoffeeManager::ensureFavouriteCoffeeFileExists(const std::string& filename)
+{
+	std::ifstream plik(filename);
+
+	if (!plik)
+	{
+		writeDefaultCoffees(filename);
+	}
+}
+
 
 
 
