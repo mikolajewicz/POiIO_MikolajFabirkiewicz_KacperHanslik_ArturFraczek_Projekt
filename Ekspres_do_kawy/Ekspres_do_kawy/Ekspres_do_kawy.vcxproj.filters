@@ -49,7 +49,9 @@
     <Text Include="default_coffees.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
-    <Text Include="favourite_coffees.txt" />
+    <Text Include="favourite_coffees.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainWin.resx">

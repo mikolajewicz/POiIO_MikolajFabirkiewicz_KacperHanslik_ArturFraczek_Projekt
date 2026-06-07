@@ -12,6 +12,7 @@ public:
 	static void saveVector(std::string filename, std::vector<TCoffee> coffe_vector);
 	static void ensureDefaultCoffeeFileExists(const std::string& filename);
 	static void ensureFavouriteCoffeeFileExists(const std::string& filename);
+	static bool removeCoffeeByName(std::string filename, std::vector<TCoffee>& coffe_vector, std::string coffee_name);
 };
 
 

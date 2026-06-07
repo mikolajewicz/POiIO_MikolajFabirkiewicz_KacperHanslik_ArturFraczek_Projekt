@@ -83,8 +83,28 @@ void CoffeeManager::ensureFavouriteCoffeeFileExists(const std::string& filename)
 
 	if (!plik)
 	{
-		writeDefaultCoffees(filename);
+		std::ofstream nowyPlik(filename);
+		nowyPlik.close();
 	}
+}
+
+bool CoffeeManager::removeCoffeeByName(
+	std::string filename,
+	std::vector<TCoffee>& coffe_vector,
+	std::string coffee_name
+)
+{
+	for (size_t i = 0; i < coffe_vector.size(); i++)
+	{
+		if (coffe_vector[i].getName() == coffee_name)
+		{
+			coffe_vector.erase(coffe_vector.begin() + i);
+			saveVector(filename, coffe_vector);
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

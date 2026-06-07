@@ -6,6 +6,8 @@
 #include "TCoffee.h"
 #include "CoffeeManager.h"
 
+#include <msclr/marshal_cppstd.h>
+
 using namespace System::IO;
 
 namespace Ekspresdokawy {
@@ -37,6 +39,12 @@ namespace Ekspresdokawy {
 			PanelUlub->Visible = false;
 
 			pokazujeUlubione = false;
+
+			btn_Podstawowe->BackColor = System::Drawing::Color::SaddleBrown;
+			btn_Podstawowe->ForeColor = System::Drawing::Color::White;
+
+			btn_Ulubione->BackColor = System::Drawing::SystemColors::Control;
+			btn_Ulubione->ForeColor = System::Drawing::Color::Black;
 
 			GenerujPrzyciskiKaw();
 		}
@@ -83,6 +91,7 @@ namespace Ekspresdokawy {
 
 		System::Windows::Forms::Button^ btn_ZapiszEdycje;
 		System::Windows::Forms::Button^ btn_AnulujEdycje;
+		System::Windows::Forms::Button^ btn_ZaparzEdycje;
 
 	private:
 		System::ComponentModel::Container^ components;
@@ -121,6 +130,7 @@ namespace Ekspresdokawy {
 
 			this->btn_ZapiszEdycje = (gcnew System::Windows::Forms::Button());
 			this->btn_AnulujEdycje = (gcnew System::Windows::Forms::Button());
+			this->btn_ZaparzEdycje = (gcnew System::Windows::Forms::Button());
 
 			this->SuspendLayout();
 
@@ -135,6 +145,13 @@ namespace Ekspresdokawy {
 			this->PanelPodstaw->TabIndex = 0;
 			this->PanelPodstaw->Visible = true;
 
+			this->PanelPodstaw->Anchor =
+				static_cast<System::Windows::Forms::AnchorStyles>(
+					System::Windows::Forms::AnchorStyles::Top |
+					System::Windows::Forms::AnchorStyles::Bottom |
+					System::Windows::Forms::AnchorStyles::Left
+					);
+
 			// 
 			// btn_Podstawowe
 			// 
@@ -144,7 +161,7 @@ namespace Ekspresdokawy {
 			this->btn_Podstawowe->Size = System::Drawing::Size(90, 65);
 			this->btn_Podstawowe->TabIndex = 1;
 			this->btn_Podstawowe->Text = L"Podstawowe";
-			this->btn_Podstawowe->UseVisualStyleBackColor = true;
+			this->btn_Podstawowe->UseVisualStyleBackColor = false;
 			this->btn_Podstawowe->Click +=
 				gcnew System::EventHandler(this, &MainWin::btn_Podstawowe_Click);
 
@@ -157,7 +174,7 @@ namespace Ekspresdokawy {
 			this->btn_Ulubione->Size = System::Drawing::Size(90, 65);
 			this->btn_Ulubione->TabIndex = 2;
 			this->btn_Ulubione->Text = L"Ulubione";
-			this->btn_Ulubione->UseVisualStyleBackColor = true;
+			this->btn_Ulubione->UseVisualStyleBackColor = false;
 			this->btn_Ulubione->Click +=
 				gcnew System::EventHandler(this, &MainWin::btn_Ulubione_Click);
 
@@ -261,6 +278,7 @@ namespace Ekspresdokawy {
 			this->btn_ZapiszEdycje->Click +=
 				gcnew System::EventHandler(this, &MainWin::btn_ZapiszEdycje_Click);
 
+			this->AcceptButton = this->btn_ZapiszEdycje;
 			// 
 			// btn_AnulujEdycje
 			// 
@@ -279,11 +297,21 @@ namespace Ekspresdokawy {
 			this->PanelEdycji->Controls->Add(this->num_Kawa);
 			this->PanelEdycji->Controls->Add(this->lbl_Mleko);
 			this->PanelEdycji->Controls->Add(this->num_Mleko);
+			
+			// 
+			// btn_ZaparzEdycje
+			// 
+			this->btn_ZaparzEdycje->Text = L"Zaparz";
+			this->btn_ZaparzEdycje->Location = System::Drawing::Point(75, 280);
+			this->btn_ZaparzEdycje->Size = System::Drawing::Size(85, 35);
+			this->btn_ZaparzEdycje->Click +=
+				gcnew System::EventHandler(this, &MainWin::btn_ZaparzEdycje_Click);
 			this->PanelEdycji->Controls->Add(this->btn_ZapiszEdycje);
 			this->PanelEdycji->Controls->Add(this->btn_AnulujEdycje);
-			// 
-			// MainWin
-			// 
+			this->PanelEdycji->Controls->Add(this->btn_ZaparzEdycje);
+				// 
+				// MainWin
+				// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
@@ -321,11 +349,16 @@ namespace Ekspresdokawy {
 
 			pokazujeUlubione = false;
 
+			btn_Podstawowe->BackColor = System::Drawing::Color::SaddleBrown;
+			btn_Podstawowe->ForeColor = System::Drawing::Color::White;
+
+			btn_Ulubione->BackColor = System::Drawing::SystemColors::Control;
+			btn_Ulubione->ForeColor = System::Drawing::Color::Black;
+
 			GenerujPrzyciskiKaw();
 			PanelEdycji->Visible = false;
 			edytowanyIndeks = -1;
 		}
-
 	private:
 		System::Void btn_Ulubione_Click(System::Object^ sender, System::EventArgs^ e)
 		{
@@ -333,6 +366,12 @@ namespace Ekspresdokawy {
 			PanelUlub->Visible = false;
 
 			pokazujeUlubione = true;
+
+			btn_Ulubione->BackColor = System::Drawing::Color::SaddleBrown;
+			btn_Ulubione->ForeColor = System::Drawing::Color::White;
+
+			btn_Podstawowe->BackColor = System::Drawing::SystemColors::Control;
+			btn_Podstawowe->ForeColor = System::Drawing::Color::Black;
 
 			GenerujPrzyciskiUlubionychKaw();
 
@@ -389,53 +428,75 @@ namespace Ekspresdokawy {
 		}
 
 	private:
-		private:
-	void GenerujPrzyciskiUlubionychKaw()
-	{
-		PanelPodstaw->Controls->Clear();
-
-		int pozycjaY = 10;
-		int odstep = 55;
-
-		for (size_t i = 0; i < favourite_coffees_vector->size(); i++)
+	private:
+	private:
+		void GenerujPrzyciskiUlubionychKaw()
 		{
-			Button^ przyciskKawy = gcnew Button();
+			PanelPodstaw->Controls->Clear();
 
-			std::string nazwaKawy = (*favourite_coffees_vector)[i].getName();
+			int pozycjaY = 10;
+			int odstep = 55;
 
-			przyciskKawy->Text = gcnew String(nazwaKawy.c_str());
-			przyciskKawy->Size = System::Drawing::Size(130, 50);
-			przyciskKawy->Location = System::Drawing::Point(10, pozycjaY);
-			przyciskKawy->Tag = (int)i;
+			for (size_t i = 0; i < favourite_coffees_vector->size(); i++)
+			{
+				Button^ przyciskKawy = gcnew Button();
 
-			przyciskKawy->Click +=
-				gcnew System::EventHandler(this, &MainWin::KliknietoUlubionaKawa_Click);
+				std::string nazwaKawy = (*favourite_coffees_vector)[i].getName();
 
-			PanelPodstaw->Controls->Add(przyciskKawy);
+				przyciskKawy->Text = gcnew String(nazwaKawy.c_str());
+				przyciskKawy->Size = System::Drawing::Size(115, 50);
+				przyciskKawy->Location = System::Drawing::Point(10, pozycjaY);
+				przyciskKawy->Tag = (int)i;
 
-			Button^ przyciskEdycji = gcnew Button();
+				przyciskKawy->Click +=
+					gcnew System::EventHandler(this, &MainWin::KliknietoUlubionaKawa_Click);
 
-			przyciskEdycji->Text = L"⚙";
-			przyciskEdycji->Image = nullptr;
-			przyciskEdycji->Font = gcnew System::Drawing::Font(
-				L"Segoe UI Symbol",
-				18,
-				System::Drawing::FontStyle::Regular
-			);
-			przyciskEdycji->TextAlign = ContentAlignment::MiddleCenter;
+				PanelPodstaw->Controls->Add(przyciskKawy);
 
-			przyciskEdycji->Size = System::Drawing::Size(70, 50);
-			przyciskEdycji->Location = System::Drawing::Point(145, pozycjaY);
-			przyciskEdycji->Tag = (int)i;
 
-			przyciskEdycji->Click +=
-				gcnew System::EventHandler(this, &MainWin::KliknietoEdytujKawe_Click);
+				Button^ przyciskEdycji = gcnew Button();
 
-			PanelPodstaw->Controls->Add(przyciskEdycji);
+				przyciskEdycji->Text = L"⚙";
+				przyciskEdycji->Image = nullptr;
+				przyciskEdycji->Font = gcnew System::Drawing::Font(
+					L"Segoe UI Symbol",
+					18,
+					System::Drawing::FontStyle::Regular
+				);
+				przyciskEdycji->TextAlign = ContentAlignment::MiddleCenter;
 
-			pozycjaY += odstep;
+				przyciskEdycji->Size = System::Drawing::Size(45, 50);
+				przyciskEdycji->Location = System::Drawing::Point(130, pozycjaY);
+				przyciskEdycji->Tag = (int)i;
+
+				przyciskEdycji->Click +=
+					gcnew System::EventHandler(this, &MainWin::KliknietoEdytujKawe_Click);
+
+				PanelPodstaw->Controls->Add(przyciskEdycji);
+
+
+				Button^ przyciskUsun = gcnew Button();
+
+				przyciskUsun->Text = L"X";
+				przyciskUsun->Font = gcnew System::Drawing::Font(
+					L"Segoe UI",
+					14,
+					System::Drawing::FontStyle::Bold
+				);
+				przyciskUsun->TextAlign = ContentAlignment::MiddleCenter;
+
+				przyciskUsun->Size = System::Drawing::Size(45, 50);
+				przyciskUsun->Location = System::Drawing::Point(180, pozycjaY);
+				przyciskUsun->Tag = (int)i;
+
+				przyciskUsun->Click +=
+					gcnew System::EventHandler(this, &MainWin::KliknietoUsunUlubionaKawe_Click);
+
+				PanelPodstaw->Controls->Add(przyciskUsun);
+
+				pozycjaY += odstep;
+			}
 		}
-	}
 
 	private:
 		System::Void KliknietoKawa_Click(System::Object^ sender, System::EventArgs^ e)
@@ -557,21 +618,106 @@ namespace Ekspresdokawy {
 
 			MessageBox::Show(komunikat, "Ekspres do kawy");
 		}
-		private:
-			System::Void btn_ZapiszEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+	private:
+		System::Void btn_ZapiszEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			if (edytowanyIndeks < 0)
 			{
 				MessageBox::Show(
-					"Zapis będzie dodany później.",
-					"Edycja kawy",
+					"Nie wybrano kawy do edycji.",
+					"Błąd",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information
+					MessageBoxIcon::Error
 				);
+				return;
 			}
-		private:
-			System::Void btn_AnulujEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+
+			std::string nowaNazwa =
+				msclr::interop::marshal_as<std::string>(txt_Nazwa->Text);
+
+			int nowaWoda = Decimal::ToInt32(num_Woda->Value);
+			int nowaKawa = Decimal::ToInt32(num_Kawa->Value);
+			int noweMleko = Decimal::ToInt32(num_Mleko->Value);
+
+			for (size_t i = 0; i < favourite_coffees_vector->size(); i++)
 			{
-				PanelEdycji->Visible = false;
-				edytowanyIndeks = -1;
+				if ((*favourite_coffees_vector)[i].getName() == nowaNazwa)
+				{
+					MessageBox::Show(
+						"Kawa o takiej nazwie już istnieje w ulubionych.",
+						"Błąd",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Warning
+					);
+					return;
+				}
+			}
+
+			TCoffee nowaKawaObiekt(nowaNazwa, nowaWoda, nowaKawa, noweMleko);
+
+			favourite_coffees_vector->push_back(nowaKawaObiekt);
+
+
+			CoffeeManager::saveVector("favourite_coffees.txt", *favourite_coffees_vector);
+
+
+			btn_Ulubione_Click(nullptr, nullptr);
+		}
+	private:
+		System::Void btn_AnulujEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			PanelEdycji->Visible = false;
+			edytowanyIndeks = -1;
+		}
+	private:
+		System::Void KliknietoUsunUlubionaKawe_Click(System::Object^ sender, System::EventArgs^ e)
+		{
+			Button^ kliknietyPrzycisk = safe_cast<Button^>(sender);
+
+			int indeksKawy = Convert::ToInt32(kliknietyPrzycisk->Tag);
+
+			TCoffee usuwanaKawa = (*favourite_coffees_vector)[indeksKawy];
+
+			String^ komunikat = gcnew String(
+				("Czy na pewno chcesz usunąć kawę \"" + usuwanaKawa.getName() + "\" z ulubionych?").c_str()
+			);
+
+			bool usunieto = CoffeeManager::removeCoffeeByName(
+				"favourite_coffees.txt",
+				*favourite_coffees_vector,
+				usuwanaKawa.getName()
+			);
+
+			if (!usunieto)
+			{
+				MessageBox::Show(
+					"Nie udało się usunąć kawy.",
+					"Błąd",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Error
+				);
+				return;
+			}
+
+			PanelEdycji->Visible = false;
+			edytowanyIndeks = -1;
+
+			GenerujPrzyciskiUlubionychKaw();
+
+		}
+		private:
+			System::Void btn_ZaparzEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+			{
+				std::string nazwa =
+					msclr::interop::marshal_as<std::string>(txt_Nazwa->Text);
+
+				int woda = Decimal::ToInt32(num_Woda->Value);
+				int kawa = Decimal::ToInt32(num_Kawa->Value);
+				int mleko = Decimal::ToInt32(num_Mleko->Value);
+
+				TCoffee kawaDoZaparzenia(nazwa, woda, kawa, mleko);
+
+				PokazInformacjeOKawie(kawaDoZaparzenia, false);
 			}
 	};
 
