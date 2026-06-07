@@ -56,7 +56,4 @@
       <Filter>Pliki zasobów</Filter>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="favourite_coffees" />
-  </ItemGroup>
 </Project>

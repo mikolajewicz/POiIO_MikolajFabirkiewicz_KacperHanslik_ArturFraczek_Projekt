@@ -1,10 +1,12 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <vector>
 
 #include "TCoffee.h"
 #include "CoffeeManager.h"
+
+using namespace System::IO;
 
 namespace Ekspresdokawy {
 
@@ -66,6 +68,22 @@ namespace Ekspresdokawy {
 		System::Windows::Forms::Button^ btn_Ulubione;
 		System::Windows::Forms::Panel^ PanelUlub;
 
+		System::Windows::Forms::Panel^ PanelEdycji;
+
+		System::Windows::Forms::Label^ lbl_TytulEdycji;
+		System::Windows::Forms::Label^ lbl_Nazwa;
+		System::Windows::Forms::Label^ lbl_Woda;
+		System::Windows::Forms::Label^ lbl_Kawa;
+		System::Windows::Forms::Label^ lbl_Mleko;
+
+		System::Windows::Forms::TextBox^ txt_Nazwa;
+		System::Windows::Forms::NumericUpDown^ num_Woda;
+		System::Windows::Forms::NumericUpDown^ num_Kawa;
+		System::Windows::Forms::NumericUpDown^ num_Mleko;
+
+		System::Windows::Forms::Button^ btn_ZapiszEdycje;
+		System::Windows::Forms::Button^ btn_AnulujEdycje;
+
 	private:
 		System::ComponentModel::Container^ components;
 
@@ -73,6 +91,8 @@ namespace Ekspresdokawy {
 		std::vector<TCoffee>* default_coffees_vector;
 		std::vector<TCoffee>* favourite_coffees_vector;
 		bool pokazujeUlubione;
+		int edytowanyIndeks = -1;
+		bool edytujeUlubiona = false;
 
 #pragma region Windows Form Designer generated code
 
@@ -85,6 +105,22 @@ namespace Ekspresdokawy {
 			this->btn_Podstawowe = (gcnew System::Windows::Forms::Button());
 			this->btn_Ulubione = (gcnew System::Windows::Forms::Button());
 			this->PanelUlub = (gcnew System::Windows::Forms::Panel());
+
+			this->PanelEdycji = (gcnew System::Windows::Forms::Panel());
+
+			this->lbl_TytulEdycji = (gcnew System::Windows::Forms::Label());
+			this->lbl_Nazwa = (gcnew System::Windows::Forms::Label());
+			this->lbl_Woda = (gcnew System::Windows::Forms::Label());
+			this->lbl_Kawa = (gcnew System::Windows::Forms::Label());
+			this->lbl_Mleko = (gcnew System::Windows::Forms::Label());
+
+			this->txt_Nazwa = (gcnew System::Windows::Forms::TextBox());
+			this->num_Woda = (gcnew System::Windows::Forms::NumericUpDown());
+			this->num_Kawa = (gcnew System::Windows::Forms::NumericUpDown());
+			this->num_Mleko = (gcnew System::Windows::Forms::NumericUpDown());
+
+			this->btn_ZapiszEdycje = (gcnew System::Windows::Forms::Button());
+			this->btn_AnulujEdycje = (gcnew System::Windows::Forms::Button());
 
 			this->SuspendLayout();
 
@@ -127,7 +163,7 @@ namespace Ekspresdokawy {
 
 			// 
 			// PanelUlub
-			// Zostawiamy panel w projekcie, ale nie u¿ywamy go do wyœwietlania kaw.
+			// Zostawiamy panel w projekcie, ale nie uÅ¼ywamy go do wyÅ›wietlania kaw.
 			// 
 			this->PanelUlub->AutoScroll = true;
 			this->PanelUlub->Location = System::Drawing::Point(4, 92);
@@ -136,7 +172,115 @@ namespace Ekspresdokawy {
 			this->PanelPodstaw->Size = System::Drawing::Size(280, 366);
 			this->PanelUlub->TabIndex = 3;
 			this->PanelUlub->Visible = false;
+			// 
+// PanelEdycji
+// 
+			this->PanelEdycji->Location = System::Drawing::Point(300, 92);
+			this->PanelEdycji->Margin = System::Windows::Forms::Padding(2);
+			this->PanelEdycji->Name = L"PanelEdycji";
+			this->PanelEdycji->Size = System::Drawing::Size(240, 366);
+			this->PanelEdycji->TabIndex = 4;
+			this->PanelEdycji->Visible = false;
+			this->PanelEdycji->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 
+			// 
+			// lbl_TytulEdycji
+			// 
+			this->lbl_TytulEdycji->Text = L"Personalizacja kawy";
+			this->lbl_TytulEdycji->Location = System::Drawing::Point(15, 15);
+			this->lbl_TytulEdycji->Size = System::Drawing::Size(200, 25);
+			this->lbl_TytulEdycji->Font = gcnew System::Drawing::Font(
+				this->lbl_TytulEdycji->Font,
+				System::Drawing::FontStyle::Bold
+			);
+
+			// 
+			// lbl_Nazwa
+			// 
+			this->lbl_Nazwa->Text = L"Nazwa:";
+			this->lbl_Nazwa->Location = System::Drawing::Point(15, 55);
+			this->lbl_Nazwa->Size = System::Drawing::Size(80, 20);
+
+			// 
+			// txt_Nazwa
+			// 
+			this->txt_Nazwa->Location = System::Drawing::Point(100, 55);
+			this->txt_Nazwa->Size = System::Drawing::Size(120, 20);
+
+			// 
+			// lbl_Woda
+			// 
+			this->lbl_Woda->Text = L"Woda [ml]:";
+			this->lbl_Woda->Location = System::Drawing::Point(15, 95);
+			this->lbl_Woda->Size = System::Drawing::Size(80, 20);
+
+			// 
+			// num_Woda
+			// 
+			this->num_Woda->Location = System::Drawing::Point(100, 95);
+			this->num_Woda->Size = System::Drawing::Size(120, 20);
+			this->num_Woda->Minimum = 0;
+			this->num_Woda->Maximum = 1000;
+
+			// 
+			// lbl_Kawa
+			// 
+			this->lbl_Kawa->Text = L"Kawa [g]:";
+			this->lbl_Kawa->Location = System::Drawing::Point(15, 135);
+			this->lbl_Kawa->Size = System::Drawing::Size(80, 20);
+
+			// 
+			// num_Kawa
+			// 
+			this->num_Kawa->Location = System::Drawing::Point(100, 135);
+			this->num_Kawa->Size = System::Drawing::Size(120, 20);
+			this->num_Kawa->Minimum = 0;
+			this->num_Kawa->Maximum = 100;
+
+			// 
+			// lbl_Mleko
+			// 
+			this->lbl_Mleko->Text = L"Mleko [ml]:";
+			this->lbl_Mleko->Location = System::Drawing::Point(15, 175);
+			this->lbl_Mleko->Size = System::Drawing::Size(80, 20);
+
+			// 
+			// num_Mleko
+			// 
+			this->num_Mleko->Location = System::Drawing::Point(100, 175);
+			this->num_Mleko->Size = System::Drawing::Size(120, 20);
+			this->num_Mleko->Minimum = 0;
+			this->num_Mleko->Maximum = 1000;
+
+			// 
+			// btn_ZapiszEdycje
+			// 
+			this->btn_ZapiszEdycje->Text = L"Zapisz";
+			this->btn_ZapiszEdycje->Location = System::Drawing::Point(25, 230);
+			this->btn_ZapiszEdycje->Size = System::Drawing::Size(85, 35);
+			this->btn_ZapiszEdycje->Click +=
+				gcnew System::EventHandler(this, &MainWin::btn_ZapiszEdycje_Click);
+
+			// 
+			// btn_AnulujEdycje
+			// 
+			this->btn_AnulujEdycje->Text = L"Anuluj";
+			this->btn_AnulujEdycje->Location = System::Drawing::Point(125, 230);
+			this->btn_AnulujEdycje->Size = System::Drawing::Size(85, 35);
+			this->btn_AnulujEdycje->Click +=
+				gcnew System::EventHandler(this, &MainWin::btn_AnulujEdycje_Click);
+
+			this->PanelEdycji->Controls->Add(this->lbl_TytulEdycji);
+			this->PanelEdycji->Controls->Add(this->lbl_Nazwa);
+			this->PanelEdycji->Controls->Add(this->txt_Nazwa);
+			this->PanelEdycji->Controls->Add(this->lbl_Woda);
+			this->PanelEdycji->Controls->Add(this->num_Woda);
+			this->PanelEdycji->Controls->Add(this->lbl_Kawa);
+			this->PanelEdycji->Controls->Add(this->num_Kawa);
+			this->PanelEdycji->Controls->Add(this->lbl_Mleko);
+			this->PanelEdycji->Controls->Add(this->num_Mleko);
+			this->PanelEdycji->Controls->Add(this->btn_ZapiszEdycje);
+			this->PanelEdycji->Controls->Add(this->btn_AnulujEdycje);
 			// 
 			// MainWin
 			// 
@@ -145,6 +289,7 @@ namespace Ekspresdokawy {
 			this->AutoScroll = true;
 			this->ClientSize = System::Drawing::Size(560, 463);
 
+			this->Controls->Add(this->PanelEdycji);
 			this->Controls->Add(this->PanelUlub);
 			this->Controls->Add(this->btn_Ulubione);
 			this->Controls->Add(this->btn_Podstawowe);
@@ -177,6 +322,8 @@ namespace Ekspresdokawy {
 			pokazujeUlubione = false;
 
 			GenerujPrzyciskiKaw();
+			PanelEdycji->Visible = false;
+			edytowanyIndeks = -1;
 		}
 
 	private:
@@ -188,6 +335,9 @@ namespace Ekspresdokawy {
 			pokazujeUlubione = true;
 
 			GenerujPrzyciskiUlubionychKaw();
+
+			PanelEdycji->Visible = false;
+			edytowanyIndeks = -1;
 		}
 
 	private:
@@ -216,7 +366,15 @@ namespace Ekspresdokawy {
 
 				Button^ przyciskEdycji = gcnew Button();
 
-				przyciskEdycji->Text = L"Edytuj";
+				przyciskEdycji->Text = L"âš™";
+				przyciskEdycji->Image = nullptr;
+				przyciskEdycji->Font = gcnew System::Drawing::Font(
+					L"Segoe UI Symbol",
+					18,
+					System::Drawing::FontStyle::Regular
+				);
+				przyciskEdycji->TextAlign = ContentAlignment::MiddleCenter;
+
 				przyciskEdycji->Size = System::Drawing::Size(70, 50);
 				przyciskEdycji->Location = System::Drawing::Point(145, pozycjaY);
 				przyciskEdycji->Tag = (int)i;
@@ -231,44 +389,53 @@ namespace Ekspresdokawy {
 		}
 
 	private:
-		void GenerujPrzyciskiUlubionychKaw()
+		private:
+	void GenerujPrzyciskiUlubionychKaw()
+	{
+		PanelPodstaw->Controls->Clear();
+
+		int pozycjaY = 10;
+		int odstep = 55;
+
+		for (size_t i = 0; i < favourite_coffees_vector->size(); i++)
 		{
-			PanelPodstaw->Controls->Clear();
+			Button^ przyciskKawy = gcnew Button();
 
-			int pozycjaY = 10;
-			int odstep = 55;
+			std::string nazwaKawy = (*favourite_coffees_vector)[i].getName();
 
-			for (size_t i = 0; i < favourite_coffees_vector->size(); i++)
-			{
-				Button^ przyciskKawy = gcnew Button();
+			przyciskKawy->Text = gcnew String(nazwaKawy.c_str());
+			przyciskKawy->Size = System::Drawing::Size(130, 50);
+			przyciskKawy->Location = System::Drawing::Point(10, pozycjaY);
+			przyciskKawy->Tag = (int)i;
 
-				std::string nazwaKawy = (*favourite_coffees_vector)[i].getName();
+			przyciskKawy->Click +=
+				gcnew System::EventHandler(this, &MainWin::KliknietoUlubionaKawa_Click);
 
-				przyciskKawy->Text = gcnew String(nazwaKawy.c_str());
-				przyciskKawy->Size = System::Drawing::Size(130, 50);
-				przyciskKawy->Location = System::Drawing::Point(10, pozycjaY);
-				przyciskKawy->Tag = (int)i;
+			PanelPodstaw->Controls->Add(przyciskKawy);
 
-				przyciskKawy->Click +=
-					gcnew System::EventHandler(this, &MainWin::KliknietoUlubionaKawa_Click);
+			Button^ przyciskEdycji = gcnew Button();
 
-				PanelPodstaw->Controls->Add(przyciskKawy);
+			przyciskEdycji->Text = L"âš™";
+			przyciskEdycji->Image = nullptr;
+			przyciskEdycji->Font = gcnew System::Drawing::Font(
+				L"Segoe UI Symbol",
+				18,
+				System::Drawing::FontStyle::Regular
+			);
+			przyciskEdycji->TextAlign = ContentAlignment::MiddleCenter;
 
-				Button^ przyciskEdycji = gcnew Button();
+			przyciskEdycji->Size = System::Drawing::Size(70, 50);
+			przyciskEdycji->Location = System::Drawing::Point(145, pozycjaY);
+			przyciskEdycji->Tag = (int)i;
 
-				przyciskEdycji->Text = L"Edytuj";
-				przyciskEdycji->Size = System::Drawing::Size(70, 50);
-				przyciskEdycji->Location = System::Drawing::Point(145, pozycjaY);
-				przyciskEdycji->Tag = (int)i;
+			przyciskEdycji->Click +=
+				gcnew System::EventHandler(this, &MainWin::KliknietoEdytujKawe_Click);
 
-				przyciskEdycji->Click +=
-					gcnew System::EventHandler(this, &MainWin::KliknietoEdytujKawe_Click);
+			PanelPodstaw->Controls->Add(przyciskEdycji);
 
-				PanelPodstaw->Controls->Add(przyciskEdycji);
-
-				pozycjaY += odstep;
-			}
+			pozycjaY += odstep;
 		}
+	}
 
 	private:
 		System::Void KliknietoKawa_Click(System::Object^ sender, System::EventArgs^ e)
@@ -288,8 +455,8 @@ namespace Ekspresdokawy {
 			else
 			{
 				MessageBox::Show(
-					"B³¹d: Nie znaleziono danych dla tej kawy!",
-					"B³¹d",
+					"BÅ‚Ä…d: Nie znaleziono danych dla tej kawy!",
+					"BÅ‚Ä…d",
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Error
 				);
@@ -314,8 +481,8 @@ namespace Ekspresdokawy {
 			else
 			{
 				MessageBox::Show(
-					"B³¹d: Nie znaleziono danych dla tej kawy!",
-					"B³¹d",
+					"BÅ‚Ä…d: Nie znaleziono danych dla tej kawy!",
+					"BÅ‚Ä…d",
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Error
 				);
@@ -334,41 +501,39 @@ namespace Ekspresdokawy {
 			if (pokazujeUlubione)
 			{
 				aktualnyWektor = favourite_coffees_vector;
+				edytujeUlubiona = true;
 			}
 			else
 			{
 				aktualnyWektor = default_coffees_vector;
+				edytujeUlubiona = false;
 			}
 
 			if (aktualnyWektor != nullptr &&
 				indeksKawy >= 0 &&
 				indeksKawy < static_cast<int>(aktualnyWektor->size()))
 			{
+				edytowanyIndeks = indeksKawy;
+
 				TCoffee wybranaKawa = (*aktualnyWektor)[indeksKawy];
 
-				std::string info =
-					"Edycja kawy:\n" +
-					wybranaKawa.getName() +
-					"\n\nWoda: " + std::to_string(wybranaKawa.getWaterAmount()) + " ml" +
-					"\nKawa: " + std::to_string(wybranaKawa.getCoffeeAmount()) + " g" +
-					"\nMleko: " + std::to_string(wybranaKawa.getMilkAmount()) + " ml";
+				txt_Nazwa->Text = gcnew String(wybranaKawa.getName().c_str());
+				num_Woda->Value = wybranaKawa.getWaterAmount();
+				num_Kawa->Value = wybranaKawa.getCoffeeAmount();
+				num_Mleko->Value = wybranaKawa.getMilkAmount();
 
-				MessageBox::Show(
-					gcnew String(info.c_str()),
-					"Edycja kawy"
-				);
+				PanelEdycji->Visible = true;
 			}
 			else
 			{
 				MessageBox::Show(
-					"B³¹d: Nie znaleziono danych dla tej kawy!",
-					"B³¹d",
+					"BÅ‚Ä…d: Nie znaleziono danych dla tej kawy!",
+					"BÅ‚Ä…d",
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Error
 				);
 			}
 		}
-
 	private:
 		void PokazInformacjeOKawie(const TCoffee& wybranaKawa, bool czyUlubiona)
 		{
@@ -376,11 +541,11 @@ namespace Ekspresdokawy {
 
 			if (czyUlubiona)
 			{
-				info = "Parzê ulubion¹ kawê: ";
+				info = "ParzÄ™ ulubionÄ… kawÄ™: ";
 			}
 			else
 			{
-				info = "Parzê: ";
+				info = "ParzÄ™: ";
 			}
 
 			info += wybranaKawa.getName() +
@@ -392,5 +557,22 @@ namespace Ekspresdokawy {
 
 			MessageBox::Show(komunikat, "Ekspres do kawy");
 		}
+		private:
+			System::Void btn_ZapiszEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+			{
+				MessageBox::Show(
+					"Zapis bÄ™dzie dodany pÃ³Åºniej.",
+					"Edycja kawy",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information
+				);
+			}
+		private:
+			System::Void btn_AnulujEdycje_Click(System::Object^ sender, System::EventArgs^ e)
+			{
+				PanelEdycji->Visible = false;
+				edytowanyIndeks = -1;
+			}
 	};
+
 }
