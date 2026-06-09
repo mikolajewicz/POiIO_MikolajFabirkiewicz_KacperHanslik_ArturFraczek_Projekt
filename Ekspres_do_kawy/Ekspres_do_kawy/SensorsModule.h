@@ -25,6 +25,10 @@ public:
     void refillBeans(int amount);
     void emptyGrounds();
 
+    int getWaterLevel() const { return water_level; }
+    int getBeansAmount() const { return beans_amount; }
+    int getGroundsCount() const { return grounds_count; }
+
     // Diagnostyka
     void statusCheck();
 };
